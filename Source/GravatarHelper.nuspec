@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>GravatarHelper</id>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <authors>Johannes Kommer</authors>
     <owners>Johannes Kommer</owners>
     <projectUrl>https://bitbucket.org/jkommer/gravatarhelper</projectUrl>
@@ -15,10 +15,8 @@ Example usage: @Html.GravatarImage("MyEmailAddress@example.com", 80)</descriptio
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
       <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="net40" />
     </frameworkAssemblies>
-    <releaseNotes>- Implement Web.Config transformations to support @Html.GravatarImage() automatically.
-- No longe require a DefaultImage to be specified.
-	</releaseNotes>
-    <copyright>Copyright 2012</copyright>
-    <tags>MVC MVC3 ASP.NET</tags>
+    <releaseNotes>Added class and alt text tag support.</releaseNotes>
+    <copyright>Copyright 2012, Johannes Kommer</copyright>
+    <tags>MVC MVC3 ASP.NET Gravatar</tags>
   </metadata>
 </package>

@@ -70,32 +70,43 @@ namespace $rootnamespace$.Helpers
 		/// <param name="helper"></param>
 		/// <param name="email">Email address to generate the Gravatar for.</param>
 		/// <param name="imageSize">Gravatar size in pixels.</param>
+		/// <param name="altText">The alt text for the image.</param>
+		/// <param name="cssClass">The css class for the image.</param>
 		/// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup, 
 		/// 						   can either be a url to an image or one of the DefaultImage* constants</param>
 		/// <param name="rating">The content rating of the images to display.</param>
 		/// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
 		/// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
 		/// <returns></returns>
-		public static IHtmlString GravatarImage(this HtmlHelper helper, string email, int imageSize, string defaultImage = "", GravatarRating rating = GravatarRating.G, bool addExtension = false, bool forceDefault = false)
+		public static IHtmlString GravatarImage(this HtmlHelper helper, string email, int imageSize, string altText = "", string cssClass = "", string defaultImage = "", GravatarRating rating = GravatarRating.G, bool addExtension = false, bool forceDefault = false)
 		{
-			return GravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault);
+			return GravatarImage(email, imageSize, altText, cssClass, defaultImage, rating, addExtension, forceDefault);
 		}
+
 
 		/// <summary>
 		/// Returns a Gravatar img tag for the provided parameters.
 		/// </summary>
 		/// <param name="email">Email address to generate the Gravatar for.</param>
 		/// <param name="imageSize">Gravatar size in pixels.</param>
+		/// <param name="altText">The alt text for the image.</param>
+		/// <param name="cssClass">The css class for the image.</param>
 		/// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup, 
 		/// 						   can either be a url to an image or one of the DefaultImage* constants</param>
 		/// <param name="rating">The content rating of the images to display.</param>
 		/// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
 		/// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
 		/// <returns></returns>
-		public static IHtmlString GravatarImage(string email, int imageSize, string defaultImage = "", GravatarRating rating = GravatarRating.G, bool addExtension = false, bool forceDefault = false)
+		public static IHtmlString GravatarImage(string email, int imageSize, string altText = "", string cssClass = "", string defaultImage = "", GravatarRating rating = GravatarRating.G, bool addExtension = false, bool forceDefault = false)
 		{
 			var imgTag = new TagBuilder("img");
 			imgTag.MergeAttribute("src", GravatarImageUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault));
+
+			if (!string.IsNullOrWhiteSpace(altText))
+                		imgTag.MergeAttribute("alt", altText);
+
+			if (!string.IsNullOrWhiteSpace(cssClass))
+                		imgTag.MergeAttribute("class", cssClass);
 
 			return MvcHtmlString.Create(imgTag.ToString());
 		}
