@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<configuration>
+    <system.web>
+        <pages>
+            <namespaces>
+		<add namespace="GravatarHelper"/>
+                <add namespace="GravatarHelper.Extensions"/>
+            </namespaces>
+        </pages>
+    </system.web>
+</configuration>

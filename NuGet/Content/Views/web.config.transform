@@ -3,7 +3,8 @@
     <system.web.webPages.razor>
         <pages>
             <namespaces>
-                <add namespace="$rootnamespace$.Helpers"/>
+	    	<add namespace="GravatarHelper"/>
+                <add namespace="GravatarHelper.Extensions"/>
             </namespaces>
         </pages>
     </system.web.webPages.razor>

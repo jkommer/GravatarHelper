@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version></version>
+    <authors>Johannes Kommer</authors>
+    <owners>Johannes Kommer</owners>
+    <licenseUrl>http://creativecommons.org/publicdomain/zero/1.0/legalcode</licenseUrl>
+    <projectUrl>https://bitbucket.org/jkommer/gravatarhelper</projectUrl>
+    <id>GravatarHelper</id>
+    <title>GravatarHelper</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. Example usage: @Html.GravatarImage("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })</description>
+    <summary />
+    <releaseNotes>- Installs as a seperate library instead of in-project .cs files.</releaseNotes>
+    <copyright>Copyright (c) 2012, Johannes Kommer</copyright>
+    <language>en-GB</language>
+    <tags>MVC3 Gravatar</tags>
+  </metadata>
+</package>

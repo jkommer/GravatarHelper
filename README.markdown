@@ -23,14 +23,18 @@ To install GravatarHelper, run the following command in the Package Manager Cons
 Create a Gravatar img tag for "MyEmailAddress@example.com", 80 pixels large with "My Gravatar" as title  and "Gravatar" as alt text.
 
 	:::text
-	@Html.GravatarImage("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })	
+	@Html.Gravatar("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })
 	
 Create a Gravatar clickable url for "MyEmailAddress@example.com", 80 pixels large with "Identicon" as the default image.
-	
+
 	:::text
 	<a href="@Url.Gravatar("MyEmailAddress@example.com", 80, GravatarHelper.DefaultImageIdenticon)">Your Gravatar</a>
 	
 ## Changelog
+
+### 3.0.0
+  
+  * Installs as a seperate library instead of in-project .cs files.
 
 ### 2.0.0
 
