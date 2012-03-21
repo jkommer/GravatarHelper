@@ -69,6 +69,12 @@
 		
 		<Copy SourceFiles="@(NuGetFiles)" DestinationFolder="$(PackageDir)\temp\GravatarHelper\%(RecursiveDir)" />		
 		
+        <ItemGroup>
+            <FilesToDelete Include="$(PackageDir)\temp\GravatarHelper\lib\**\*.pdb" />
+        </ItemGroup>		
+		
+		<Delete Files="@(FilesToDelete)" />		
+		
         <!-- insert the version number into the nuspec files -->
         <XmlUpdate
 			Prefix="NuSpec"
