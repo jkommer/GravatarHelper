@@ -47,5 +47,16 @@ namespace GravatarHelper.Extensions
 		{
 			return GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, null, null);
 		}
+
+		/// <summary>
+		/// Returns the Gravatar profile URL for the provided parameters.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the Gravatar for.</param>
+		/// <returns></returns>
+		public static string GravatarProfile(this UrlHelper helper, string email)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email);
+		}
 	}
 }

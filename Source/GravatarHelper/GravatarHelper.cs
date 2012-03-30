@@ -59,12 +59,22 @@ namespace GravatarHelper
 		/// <summary>
 		/// Gravatar HTTP url. 
 		/// </summary>
-		private const string GravatarUrl = "http://www.gravatar.com/avatar";
+		private const string GravatarUrl = "http://www.gravatar.com";
 
 		/// <summary>
 		/// Gravatar HTTPS url.
 		/// </summary>
-		private const string GravatarSecureUrl = "https://secure.gravatar.com/avatar";
+		private const string GravatarSecureUrl = "https://secure.gravatar.com";
+
+		/// <summary>
+		/// Gravatar image path.
+		/// </summary>
+		private const string GravatarImagePath = "/avatar/";
+
+		/// <summary>
+		/// Gravatar profile path.
+		/// </summary>
+		private const string GravatarProfilePath = "/";
 
 		/// <summary>
 		/// Returns the Gravatar URL for the provided parameters.
@@ -114,8 +124,9 @@ namespace GravatarHelper
 			if (!string.IsNullOrEmpty(defaultImage) && defaultImage.Trim().Length > 0)
 				defaultImage = string.Format("&d={0}", HttpUtility.UrlEncode(defaultImage));
 
-			return string.Format("{0}/{1}?s={2}{3}{4}{5}{6}",
+			return string.Format("{0}{1}{2}?s={3}{4}{5}{6}{7}",
 				HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+				GravatarImagePath,
 				hash,
 				imageSize,
 				defaultImage,
@@ -125,6 +136,22 @@ namespace GravatarHelper
 			);
 		}
 
+		/// <summary>
+		/// Returns the Gravatar profile URL for the provided parameters. 
+		/// </summary>
+		/// <param name="email">Email address to generate the Gravatar for.</param>
+		/// <returns></returns>
+		public static string CreateGravatarProfileUrl(string email)
+		{
+			var hash = CreateGravatarHash(email);
+
+			return string.Format("{0}{1}{2}",
+				HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+				GravatarProfilePath,
+				hash
+			);
+		}
+		
 		/// <summary>
 		/// Creates a gravatar hash.
 		/// </summary>
