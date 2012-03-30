@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace GravatarHelper
 {
@@ -140,15 +142,24 @@ namespace GravatarHelper
 		/// Returns the Gravatar profile URL for the provided parameters. 
 		/// </summary>
 		/// <param name="email">Email address to generate the Gravatar for.</param>
+		/// <param name="extension">Format extension to add to the url. Default is none, which creates a link to the profile page.</param>
+		/// <param name="optionalParameters">Optional parameters to add to the url.</param>
 		/// <returns></returns>
-		public static string CreateGravatarProfileUrl(string email)
+		public static string CreateGravatarProfileUrl(string email, string extension, object optionalParameters)
 		{
 			var hash = CreateGravatarHash(email);
 
-			return string.Format("{0}{1}{2}",
+			return string.Format("{0}{1}{2}{3}{4}",
 				HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
 				GravatarProfilePath,
-				hash
+				hash,
+				extension != null ? ("." + extension) : string.Empty,
+				optionalParameters != null ?
+					"?" + string.Join("&",
+						new RouteValueDictionary(optionalParameters)
+						.Select(parameter => string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value.ToString()))))
+					:
+					string.Empty
 			);
 		}
 		

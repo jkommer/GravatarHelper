@@ -49,14 +49,82 @@ namespace GravatarHelper.Extensions
 		}
 
 		/// <summary>
-		/// Returns the Gravatar profile URL for the provided parameters.
+		/// Returns a URL to the Gravatar profile.
 		/// </summary>
 		/// <param name="helper">UrlHelper.</param>
 		/// <param name="email">Email address to generate the Gravatar for.</param>
 		/// <returns></returns>
 		public static string GravatarProfile(this UrlHelper helper, string email)
 		{
-			return GravatarHelper.CreateGravatarProfileUrl(email);
+			return GravatarHelper.CreateGravatarProfileUrl(email, null, null);
+		}
+
+		/// <summary>
+		/// Returns a URL to the Gravatar profile data formatted as JSON.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsJSON(this UrlHelper helper, string email)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "json", null);
+		}
+
+		/// <summary>
+		/// Returns a URL to the Gravatar profile data formatted as JSON.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <param name="callback">Name of the Javascript callback function.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsJSON(this UrlHelper helper, string email, string callback)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "json", new { callback = callback });
+		}
+
+		/// <summary>
+		/// Returns a URL to the Gravatar profile data formatted as vCard.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsVCard(this UrlHelper helper, string email)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "vcf", null);
+		}
+		
+		/// <summary>
+		/// Returns a URL to the Gravatar profile data formatted as XML.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsXml(this UrlHelper helper, string email)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "xml", null);
+		}
+
+		/// <summary>
+		/// Returns a URL to an image containing a QR Code link back to the Gravatar profile.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsQRCode(this UrlHelper helper, string email)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "qr", null);
+		}
+		
+		/// <summary>
+		/// Returns a URL to an image containing a QR Code link back to the Gravatar profile.
+		/// </summary>
+		/// <param name="helper">UrlHelper.</param>
+		/// <param name="email">Email address to generate the link for.</param>
+		/// <param name="imageSize">QR Code size in pixels.</param>
+		/// <returns></returns>
+		public static string GravatarProfileAsQRCode(this UrlHelper helper, string email, int imageSize)
+		{
+			return GravatarHelper.CreateGravatarProfileUrl(email, "qr", new { s = imageSize } );
 		}
 	}
 }
