@@ -25,12 +25,23 @@ Create a Gravatar img tag for "MyEmailAddress@example.com", 80 pixels large with
 	:::text
 	@Html.Gravatar("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })
 	
-Create a Gravatar clickable url for "MyEmailAddress@example.com", 80 pixels large with "Identicon" as the default image.
+Create a Gravatar link for "MyEmailAddress@example.com", 80 pixels large with "Identicon" as the default image.
 
 	:::text
 	<a href="@Url.Gravatar("MyEmailAddress@example.com", 80, GravatarHelper.DefaultImageIdenticon)">Your Gravatar</a>
 	
+Create a Gravatar Profile link for "MyEmailAddress@example.com".
+	
+	:::text
+	<a href="@Url.GravatarProfile("MyEmailAddress@example.com")">Your Gravatar Profile</a>
+	
 ## Changelog
+
+### 3.1.0
+  
+  * Added support for profile data formats to profile url creation methods. (By David Tischler)
+  
+  * Added methods to generate Gravatar profile urls. (By David Tischler)
 
 ### 3.0.0
   
