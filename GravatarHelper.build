@@ -15,7 +15,6 @@
 	
     <Target Name="CompileAndDeploy">
 		<CallTarget Targets="Net40BuildAndDeploy" />
-		<!-- <CallTarget Targets="Net35BuildAndDeploy" /> -->
     </Target>
 	
 	<!-- Clean and proceed to build the .NET 4 framework version. Copies all the files to our \lib\net40 subfolder. -->
@@ -28,18 +27,7 @@
 		
 		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(PackageDir)\temp\GravatarHelper\lib\Net40\%(RecursiveDir)" />
 	</Target>
-	
-	<!-- Clean and proceed to build the .NET 3.5 framework version. Copies all the files to our \lib\net35 subfolder. -->
-	<Target Name="Net35BuildAndDeploy">	
-		<MSBuild Projects="$(SolutionFile)" Targets="Clean; Build" Properties="Configuration=$(Configuration);BuildConstants=NET35;TargetFrameworkVersion=v3.5" />
 
-		<ItemGroup>
-            <MainBinaries Include="$(BaseDir)\Source\GravatarHelper\bin\$(Configuration)\**\*.*" />
-        </ItemGroup>
-		
-		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(PackageDir)\temp\GravatarHelper\lib\Net35\%(RecursiveDir)" />		
-	</Target>	
-	
     <Target Name="Package" DependsOnTargets="GetVersionNumber; PackageZip; PackageNuPack" />
 
 	<Target Name="GetVersionNumber">
