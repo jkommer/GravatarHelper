@@ -34,8 +34,18 @@ Create a Gravatar Profile link for "MyEmailAddress@example.com".
 	
 	:::text
 	<a href="@Url.GravatarProfile("MyEmailAddress@example.com")">Your Gravatar Profile</a>
+
+## License
+
+GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication][1]
 	
 ## Changelog
+
+### x.x.x
+  
+  * Introduced unit tests.
+  
+  * Introduced StyleCop.
 
 ### 3.1.0
   
@@ -70,3 +80,5 @@ Create a Gravatar Profile link for "MyEmailAddress@example.com".
 ### 1.0.0
 
   * Initial release.
+  
+[1]: http://creativecommons.org/publicdomain/zero/1.0/

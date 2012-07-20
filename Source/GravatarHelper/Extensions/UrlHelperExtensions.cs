@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace GravatarHelper.Extensions
+﻿namespace GravatarHelper.Extensions
 {
+    using System.Web.Mvc;
+
     /// <summary>
     /// Gravatar UrlHelper extension methods.
     /// </summary>
@@ -10,10 +10,10 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns the Gravatar URL for the provided parameters.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize)
         {
             return GravatarHelper.CreateGravatarUrl(email, imageSize, null, null, null, null);
@@ -22,12 +22,12 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns the Gravatar URL for the provided parameters.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
-        /// <returns></returns>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage)
         {
             return GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, null, null, null);
@@ -36,13 +36,13 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns the Gravatar URL for the provided parameters.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating)
         {
             return GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, null, null);
@@ -51,9 +51,9 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to the Gravatar profile.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string GravatarProfile(this UrlHelper helper, string email)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, null, null);
@@ -62,9 +62,9 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to the Gravatar profile data formatted as JSON.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
-        /// <returns></returns>
+        /// <returns>A URL to the Gravatar profile data formatted as JSON.</returns>
         public static string GravatarProfileAsJSON(this UrlHelper helper, string email)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "json", null);
@@ -73,10 +73,10 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to the Gravatar profile data formatted as JSON.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
         /// <param name="callback">Name of the Javascript callback function.</param>
-        /// <returns></returns>
+        /// <returns>A URL to the Gravatar profile data formatted as JSON.</returns>
         public static string GravatarProfileAsJSON(this UrlHelper helper, string email, string callback)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "json", new { callback = callback });
@@ -85,9 +85,9 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to the Gravatar profile data formatted as vCard.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
-        /// <returns></returns>
+        /// <returns>A URL to the Gravatar profile data formatted as vCard.</returns>
         public static string GravatarProfileAsVCard(this UrlHelper helper, string email)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "vcf", null);
@@ -96,9 +96,9 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to the Gravatar profile data formatted as XML.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
-        /// <returns></returns>
+        /// <returns>A URL to the Gravatar profile data formatted as XML.</returns>
         public static string GravatarProfileAsXml(this UrlHelper helper, string email)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "xml", null);
@@ -107,9 +107,9 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to an image containing a QR Code link back to the Gravatar profile.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
-        /// <returns></returns>
+        /// <returns>A URL to an image containing a QR Code link back to the Gravatar profile.</returns>
         public static string GravatarProfileAsQRCode(this UrlHelper helper, string email)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "qr", null);
@@ -118,10 +118,10 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a URL to an image containing a QR Code link back to the Gravatar profile.
         /// </summary>
-        /// <param name="helper">UrlHelper.</param>
+        /// <param name="helper">The UrlHelper to extend.</param>
         /// <param name="email">Email address to generate the link for.</param>
         /// <param name="imageSize">QR Code size in pixels.</param>
-        /// <returns></returns>
+        /// <returns>A URL to an image containing a QR Code link back to the Gravatar profile.</returns>
         public static string GravatarProfileAsQRCode(this UrlHelper helper, string email, int imageSize)
         {
             return GravatarHelper.CreateGravatarProfileUrl(email, "qr", new { s = imageSize });

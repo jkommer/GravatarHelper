@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace GravatarHelper
+﻿namespace GravatarHelper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     /// <summary>
     /// A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.
     /// </summary>
@@ -84,12 +84,12 @@ namespace GravatarHelper
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static MvcHtmlString CreateGravatarImage(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault, IDictionary<string, object> htmlAttributes)
         {
             var imgTag = new TagBuilder("img");
@@ -98,7 +98,9 @@ namespace GravatarHelper
             if (htmlAttributes != null)
             {
                 foreach (var htmlAttribute in htmlAttributes)
+                {
                     imgTag.MergeAttribute(htmlAttribute.Key, htmlAttribute.Value.ToString());
+                }
             }
 
             return MvcHtmlString.Create(imgTag.ToString());
@@ -110,11 +112,11 @@ namespace GravatarHelper
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        ///  can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string CreateGravatarUrl(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault)
         {
             var hash = CreateGravatarHash(email);
@@ -124,9 +126,12 @@ namespace GravatarHelper
             imageSize = Math.Min(imageSize, MaxImageSize);
 
             if (!string.IsNullOrWhiteSpace(defaultImage))
+            {
                 defaultImage = string.Format("&d={0}", HttpUtility.UrlEncode(defaultImage));
+            }
 
-            return string.Format("{0}{1}{2}?s={3}{4}{5}{6}{7}",
+            return string.Format(
+                "{0}{1}{2}?s={3}{4}{5}{6}{7}",
                 HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 GravatarImagePath,
                 hash,
@@ -134,8 +139,7 @@ namespace GravatarHelper
                 defaultImage,
                 rating.HasValue ? string.Concat("&r=", rating) : string.Empty,
                 forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty,
-                addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty
-            );
+                addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty);
         }
 
         /// <summary>
@@ -144,34 +148,38 @@ namespace GravatarHelper
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="extension">Format extension to add to the url. Default is none, which creates a link to the profile page.</param>
         /// <param name="optionalParameters">Optional parameters to add to the url.</param>
-        /// <returns></returns>
+        /// <returns>The Gravatar profile URL for the provided parameters.</returns>
         public static string CreateGravatarProfileUrl(string email, string extension, object optionalParameters)
         {
             var hash = CreateGravatarHash(email);
 
-            return string.Format("{0}{1}{2}{3}{4}",
+            var queryStringParameters = optionalParameters != null ?
+                    "?" + string.Join(
+                        "&",
+                        new RouteValueDictionary(optionalParameters)
+                        .Select(parameter => string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value.ToString()))))
+                    : string.Empty;
+
+            return string.Format(
+                "{0}{1}{2}{3}{4}",
                 HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 GravatarProfilePath,
                 hash,
-                extension != null ? ("." + extension) : string.Empty,
-                optionalParameters != null ?
-                    "?" + string.Join("&",
-                        new RouteValueDictionary(optionalParameters)
-                        .Select(parameter => string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value.ToString()))))
-                    :
-                    string.Empty
-            );
+                extension != null ? string.Concat(".", extension) : string.Empty,
+                queryStringParameters);
         }
 
         /// <summary>
-        /// Creates a gravatar hash.
+        /// Creates a Gravatar hash for the provided email.
         /// </summary>
         /// <param name="email">The email to create the hash for</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar hash for the provided email.</returns>
         public static string CreateGravatarHash(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
+            {
                 return string.Empty;
+            }
 
             email = email.Trim();
             email = email.ToLower();
@@ -184,7 +192,9 @@ namespace GravatarHelper
                 var hashedBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(email));
 
                 foreach (var hashedByte in hashedBytes)
+                {
                     stringBuilder.Append(hashedByte.ToString("x2"));
+                }
             }
 
             return stringBuilder.ToString();
