@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace GravatarHelper.Extensions
+﻿namespace GravatarHelper.Extensions
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     /// <summary>
     /// Gravatar HtmlHelper extension methods.
     /// </summary>
@@ -12,10 +12,10 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, null, null, null, null, null);
@@ -24,12 +24,12 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
-        /// <returns></returns>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, null, null, null, null);
@@ -38,11 +38,11 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, object htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, null, null, null, null, new RouteValueDictionary(htmlAttributes));
@@ -51,11 +51,11 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, IDictionary<string, object> htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, null, null, null, null, htmlAttributes);
@@ -64,13 +64,13 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, object htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, null, null, null, new RouteValueDictionary(htmlAttributes));
@@ -79,14 +79,14 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, object htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, rating, null, null, new RouteValueDictionary(htmlAttributes));
@@ -95,14 +95,14 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, IDictionary<string, object> htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, rating, null, null, htmlAttributes);
@@ -111,16 +111,16 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool addExtension, bool forceDefault, object htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault, new RouteValueDictionary(htmlAttributes));
@@ -129,16 +129,16 @@ namespace GravatarHelper.Extensions
         /// <summary>
         /// Returns a Gravatar img tag for the provided parameters.
         /// </summary>
-        /// <param name="helper">HtmlHelper.</param>
+        /// <param name="helper">The HtmlHelper to extend.</param>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="defaultImage">The default image to use if the user does not have a Gravatar setup,
-        /// 						   can either be a url to an image or one of the DefaultImage* constants</param>
+        /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns></returns>
+        /// <returns>A Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool addExtension, bool forceDefault, IDictionary<string, object> htmlAttributes)
         {
             return GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault, htmlAttributes);
