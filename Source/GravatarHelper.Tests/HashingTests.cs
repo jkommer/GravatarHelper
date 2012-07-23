@@ -26,7 +26,7 @@
 
             var hashes = emails.Select(email => GravatarHelper.CreateGravatarHash(email));
 
-            Assert.True(hashes.Any(), "Emails should succesfully hash.");
+            Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 
             var firstHash = hashes.First();
 
@@ -71,7 +71,7 @@
 
             var hashes = emails.Select(email => GravatarHelper.CreateGravatarHash(email));
 
-            Assert.True(hashes.Any(), "Emails should succesfully hash.");
+            Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 
             var firstHash = hashes.First();
 
