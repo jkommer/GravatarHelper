@@ -22,4 +22,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("a9529424-ae7c-4219-ae39-1cf257a86f74")]
 
+// To allow unit tests to replace GetHttpContext.
+[assembly: InternalsVisibleTo("GravatarHelper.Tests")]
+
 // Version info is specified in VersionInfo.cs.
