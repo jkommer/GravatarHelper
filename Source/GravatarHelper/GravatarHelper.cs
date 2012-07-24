@@ -51,12 +51,12 @@
         /// <summary>
         /// Minimum image size supported by gravatar.
         /// </summary>
-        private const int MinImageSize = 1;
+        public const int MinImageSize = 1;
 
         /// <summary>
         /// Maximum image size supported by gravatar.
         /// </summary>
-        private const int MaxImageSize = 512;
+        public const int MaxImageSize = 512;
 
         /// <summary>
         /// Gravatar HTTP url.
@@ -77,6 +77,30 @@
         /// Gravatar profile path.
         /// </summary>
         private const string GravatarProfilePath = "/";
+
+        /// <summary>
+        /// Func used to retrieve the HttpContext to facilitate unit-testing.
+        /// </summary>
+        private static Func<HttpContextBase> getHttpContext = () => new HttpContextWrapper(HttpContext.Current);
+
+        /// <summary>
+        /// Gets or sets the Func used to retrieve the HttpContext.
+        /// </summary>
+        /// <value>
+        /// The get HTTP context.
+        /// </value>
+        internal static Func<HttpContextBase> GetHttpContext
+        {
+            get
+            { 
+                return GravatarHelper.getHttpContext;
+            }
+
+            set
+            {
+                GravatarHelper.getHttpContext = value;
+            }
+        }
 
         /// <summary>
         /// Returns the Gravatar URL for the provided parameters.
@@ -132,7 +156,7 @@
 
             return string.Format(
                 "{0}{1}{2}?s={3}{4}{5}{6}{7}",
-                HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 GravatarImagePath,
                 hash,
                 imageSize,
@@ -162,7 +186,7 @@
 
             return string.Format(
                 "{0}{1}{2}{3}{4}",
-                HttpContext.Current.Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 GravatarProfilePath,
                 hash,
                 extension != null ? string.Concat(".", extension) : string.Empty,

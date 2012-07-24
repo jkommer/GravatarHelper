@@ -5,7 +5,7 @@
     using Xunit;
 
     /// <summary>
-    /// Test which verify the functionality of CreateGravatarHash
+    /// Test which verify the functionality of CreateGravatarHash.
     /// </summary>
     public class HashingTests
     {
@@ -76,6 +76,16 @@
             var firstHash = hashes.First();
 
             Assert.True(hashes.All(hash => hash == firstHash), "Email addresses should return same hash regardless of leading and trailing whitespaces.");
+        }
+
+        /// <summary>
+        /// Verifies that null or empty values for email address return an empty hash. 
+        /// </summary>
+        [Fact(DisplayName = "Null or empty email address should return empty hash.")]
+        public void NoEmailReturnsEmptyHash()
+        {
+            Assert.True(GravatarHelper.CreateGravatarHash(null) == string.Empty);
+            Assert.True(GravatarHelper.CreateGravatarHash(string.Empty) == string.Empty);
         }
     }
 }

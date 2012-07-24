@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,7 +50,10 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="HashingTests.cs" />
+    <Compile Include="GravatarUrlTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Fakes\TestHttpContext.cs" />
+    <Compile Include="Fakes\TestHttpRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

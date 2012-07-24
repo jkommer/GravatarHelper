@@ -47,6 +47,8 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
   
   * Introduced StyleCop.
 
+  * Make GravatarHelper.MinImageSize and GravatarHelper.MaxImageSize public.
+  
 ### 3.1.0
   
   * Added support for profile data formats to profile url creation methods. (By David Tischler)
