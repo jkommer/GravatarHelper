@@ -43,6 +43,8 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 
 ### x.x.x
   
+  * Fix the position of the optional file extension to be in the correct place within the URL.
+  
   * Introduced unit tests.
   
   * Introduced StyleCop.

@@ -155,15 +155,15 @@
             }
 
             return string.Format(
-                "{0}{1}{2}?s={3}{4}{5}{6}{7}",
+                "{0}{1}{2}{3}?s={4}{5}{6}{7}",
                 GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 GravatarImagePath,
                 hash,
+                addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty,
                 imageSize,
                 defaultImage,
                 rating.HasValue ? string.Concat("&r=", rating) : string.Empty,
-                forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty,
-                addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty);
+                forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty);
         }
 
         /// <summary>

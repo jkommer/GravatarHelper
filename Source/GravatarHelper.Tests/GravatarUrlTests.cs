@@ -24,9 +24,45 @@
         }
 
         /// <summary>
+        /// Verifies that CreateGravatarUrl uses the .jpg file extension if a file extension has been requested.
+        /// </summary>
+        [Fact(DisplayName = "File extensions are used if requested.")]
+        public void UsesExtensionIfRequested()
+        {
+            Func<bool?, string> createGravatarUrl = (useExtension) =>
+                {
+                    var url = GravatarHelper.CreateGravatarUrl("MyEmailAddress@example.com", 80, null, null, useExtension, null);
+                    var uri = new Uri(url);
+
+                    return uri.Segments[2];
+                };
+
+            Assert.True(createGravatarUrl(true).EndsWith(".jpg"), "Uses a file extension when requested to.");
+            Assert.True(!createGravatarUrl(false).EndsWith(".jpg"), "Does not use a file extension when requested not to.");
+            Assert.True(!createGravatarUrl(null).EndsWith(".jpg"), "Does not use extensions by default.");
+        }
+
+        /// <summary>
+        /// Verifies that CreateGravatarUrl automatically switches between http and https depending on IsSecureConnection.
+        /// </summary>
+        [Fact(DisplayName = "Automatically determine whether to use http or https.")]
+        public void AutomaticallyUseHttpAndHttps()
+        {
+            this.httpRequest.SecureConnectionResult = true;            
+            var secureUrl = GravatarHelper.CreateGravatarUrl("MyEmailAddress@example.com", 80, null, null, null, null);
+
+            Assert.True(secureUrl.StartsWith("https://"), "Https protocl should be used on secure connections by default.");
+
+            this.httpRequest.SecureConnectionResult = false;
+            var normalUrl = GravatarHelper.CreateGravatarUrl("MyEmailAddress@example.com", 80, null, null, null, null);            
+
+            Assert.True(normalUrl.StartsWith("http://"), "Http protocl should be used on normal connections by default.");
+        }
+
+        /// <summary>
         /// Verify that the Gravatar size cannot exceed either minimum or maximum size. 
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = "Image size cannot exceed either minimum or maximum size.")]
         public void ImageSizeCannotExceedBounds()
         {
             Func<int, int> createGravatarUrl = (gravatarSize) =>
