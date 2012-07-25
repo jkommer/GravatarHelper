@@ -1,0 +1,14 @@
+# use glob syntax
+syntax: glob
+
+.hgignore
+bin
+obj
+build
+packages
+*.suo
+*.Cache
+*.cache
+*.log
+*.user
+xUnit.html
