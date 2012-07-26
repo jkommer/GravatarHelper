@@ -9,21 +9,8 @@
     /// <summary>
     /// Test which verify the functionality of CreateGravatarUrl.
     /// </summary>
-    public class GravatarUrlTests
+    public class GravatarUrlTests : BaseGravatarTests
     {
-        /// <summary>
-        /// Our testing HttpRequest; allowing us to switch between secure / non-secure connection. 
-        /// </summary>
-        private TestHttpRequest httpRequest = new TestHttpRequest();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GravatarUrlTests"/> class.
-        /// </summary>
-        public GravatarUrlTests()
-        {
-            GravatarHelper.GetHttpContext = () => new TestHttpContext(this.httpRequest);
-        }
-
         /// <summary>
         /// Verify that the rating query string parameter matches the supplied argument.
         /// </summary>
@@ -36,8 +23,8 @@
         [InlineData(null)]
         public void RatingMatchesProvidedGravatarRating(GravatarRating? rating)
         {
-            var uri = this.CreateGravatarUri(rating: rating);
-            var queryParameter = this.GetQueryParameter(uri, "r");
+            var uri = CreateGravatarUri(rating: rating);
+            var queryParameter = GetQueryParameter(uri, "r");
 
             var result = rating.HasValue ?
                 rating.ToString() == queryParameter :
@@ -57,8 +44,8 @@
         [InlineData(null, null)]
         public void ForcesGravatarToServeDefaultImageIfRequested(bool? forceDefault, string expectedValue)
         {
-            var uri = this.CreateGravatarUri(forceDefault: forceDefault);
-            var queryParameter = this.GetQueryParameter(uri, "f");
+            var uri = CreateGravatarUri(forceDefault: forceDefault);
+            var queryParameter = GetQueryParameter(uri, "f");
 
             Assert.True(queryParameter == expectedValue, string.Format("Query value: {0} did not match expected value: {1}", queryParameter, expectedValue));
         }
@@ -74,7 +61,7 @@
         [InlineData(null, false)]
         public void UsesExtensionIfRequested(bool? addExtension, bool fileExtensionExpected)
         {
-            var uri = this.CreateGravatarUri(addExtension: addExtension);
+            var uri = CreateGravatarUri(addExtension: addExtension);
             var result = uri.Segments[2];
 
             Assert.True(
@@ -88,11 +75,11 @@
         [Fact(DisplayName = "Automatically determine whether to use http or https.")]
         public void AutomaticallyUseHttpAndHttps()
         {
-            this.httpRequest.SecureConnectionResult = true;
-            var secureUri = this.CreateGravatarUri();
+            HttpRequest.SecureConnectionResult = true;
+            var secureUri = CreateGravatarUri();
 
-            this.httpRequest.SecureConnectionResult = false;
-            var normalUri = this.CreateGravatarUri();
+            HttpRequest.SecureConnectionResult = false;
+            var normalUri = CreateGravatarUri();
 
             Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by default.");
             Assert.True(normalUri.Scheme == "http", "Http protocol should be used on normal connections by default.");
@@ -109,8 +96,8 @@
         [InlineData(GravatarHelper.MaxImageSize + 1, GravatarHelper.MaxImageSize)]
         public void ImageSizeCannotExceedBounds(int imageSize, int expectedSize)
         {
-            var uri = this.CreateGravatarUri(imageSize: imageSize);
-            var querySizeParameter = this.GetQueryParameter(uri, "s");
+            var uri = CreateGravatarUri(imageSize: imageSize);
+            var querySizeParameter = GetQueryParameter(uri, "s");
 
             int querySize;
 
@@ -127,7 +114,7 @@
         [InlineData("http://example.com/logo.jpg")]
         public void UrlIsWellFormed(string defaultImage)
         {
-            var uri = this.CreateGravatarUri(defaultImage: defaultImage);
+            var uri = CreateGravatarUri(defaultImage: defaultImage);
             Assert.True(uri.IsWellFormedOriginalString(), string.Format("CreateGravatarUrl did not create a well-formed URI for: {0}", defaultImage));
         }
 
@@ -136,7 +123,7 @@
         /// </summary>
         /// <param name="uri">The URL.</param>
         /// <returns>A NameValueCollection of all query parameters.</returns>
-        private NameValueCollection GetQueryParameters(Uri uri)
+        private static NameValueCollection GetQueryParameters(Uri uri)
         {
             return HttpUtility.ParseQueryString(uri.Query);
         }
@@ -147,9 +134,9 @@
         /// <param name="uri">The URL.</param>
         /// <param name="parameter">The parameter.</param>
         /// <returns>The value of the query parameter, null if not specified.</returns>
-        private string GetQueryParameter(Uri uri, string parameter)
+        private static string GetQueryParameter(Uri uri, string parameter)
         {
-            return this.GetQueryParameters(uri)[parameter];
+            return GetQueryParameters(uri)[parameter];
         }
 
         /// <summary>
@@ -163,7 +150,7 @@
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <returns>The Gravatar url wrapped inside an Uri.</returns>
-        private Uri CreateGravatarUri(string email = "MyEmailAddress@example.com", int imageSize = 80, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null)
+        private static Uri CreateGravatarUri(string email = "MyEmailAddress@example.com", int imageSize = 80, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null)
         {
             var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault);
             return new Uri(url);
