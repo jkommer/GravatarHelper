@@ -3,11 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
+    using Xunit.Extensions;
 
     /// <summary>
     /// Test which verify the functionality of CreateGravatarHash.
     /// </summary>
-    public class HashingTests
+    public class HashingTests : BaseGravatarTests
     {
         /// <summary>
         /// Verifies that the casing of an email address does not alter CreateGravatarHash's result.
@@ -36,23 +37,18 @@
         /// <summary>
         /// Verifies that CreateGravatarHash produces correct results for predetermined values.
         /// </summary>
-        [Fact(DisplayName = "Returns correct hashes.")]
-        public void HashResult()
+        /// <param name="email">The email.</param>
+        /// <param name="expectedHash">The expected hash.</param>
+        [Theory(DisplayName = "Returns correct hashes.")]
+        [InlineData("MyEmailAddress@example.com", "0bc83cb571cd1c50ba6f3e8a78ef1346")]
+        [InlineData("jsmith@example.org", "5cc22172821c12cd0c014ed7af99ae6f")]
+        [InlineData("simplewith+symbol@example.com", "6e98f7d4e24fd2fcb163d1e31aef4359")]
+        [InlineData("a.little.more.unusual@dept.example.com", "27b0165c7edc6ca4b0575a3c67622291")]
+        [InlineData("user@[IPv6:2001:db8:1ff::a0b:dbd0]", "829fc0ea15e1e4daec2ba90bd23b0d62")]
+        public void HashResult(string email, string expectedHash)
         {
-            var emailAndExpectedHashes = new Dictionary<string, string>
-                { 
-                    { "MyEmailAddress@example.com", "0bc83cb571cd1c50ba6f3e8a78ef1346" },
-                    { "jsmith@example.org", "5cc22172821c12cd0c014ed7af99ae6f" },
-                    { "simplewith+symbol@example.com", "6e98f7d4e24fd2fcb163d1e31aef4359" },
-                    { "a.little.more.unusual@dept.example.com", "27b0165c7edc6ca4b0575a3c67622291" },
-                    { "user@[IPv6:2001:db8:1ff::a0b:dbd0]", "829fc0ea15e1e4daec2ba90bd23b0d62" },
-                };
-
-            foreach (var combination in emailAndExpectedHashes)
-            {
-                var hash = GravatarHelper.CreateGravatarHash(combination.Key);
-                Assert.True(hash == combination.Value, string.Format("Email {0} hashed into {1} but expected {2}", combination.Key, hash, combination.Value));
-            }
+            var hash = GravatarHelper.CreateGravatarHash(email);
+            Assert.True(hash == expectedHash, string.Format("Email {0} hashed into {1} but expected {2}", email, hash, expectedHash));
         }
 
         /// <summary>

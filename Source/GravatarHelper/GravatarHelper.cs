@@ -103,7 +103,7 @@
         }
 
         /// <summary>
-        /// Returns the Gravatar URL for the provided parameters.
+        /// Returns the Gravatar img tag for the provided parameters.
         /// </summary>
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="imageSize">Gravatar size in pixels.</param>
@@ -113,7 +113,7 @@
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
-        /// <returns>The Gravatar URL for the provided parameters.</returns>
+        /// <returns>The Gravatar img tag for the provided parameters.</returns>
         public static MvcHtmlString CreateGravatarImage(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault, IDictionary<string, object> htmlAttributes)
         {
             var imgTag = new TagBuilder("img");
