@@ -57,8 +57,8 @@
         [InlineData(null, null)]
         public void ForcesGravatarToServeDefaultImageIfRequested(bool? forceDefault, string expectedValue)
         {
-            var uri = CreateGravatarUri(forceDefault: forceDefault);
-            var queryParameter =  GetQueryParameter(uri, "f");
+            var uri = this.CreateGravatarUri(forceDefault: forceDefault);
+            var queryParameter = this.GetQueryParameter(uri, "f");
 
             Assert.True(queryParameter == expectedValue, string.Format("Query value: {0} did not match expected value: {1}", queryParameter, expectedValue));
         }
