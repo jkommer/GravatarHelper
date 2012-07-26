@@ -66,18 +66,20 @@
         /// <summary>
         /// Verifies that CreateGravatarUrl uses the .jpg file extension if a file extension has been requested.
         /// </summary>
-        [Fact(DisplayName = "File extensions are used if requested.")]
-        public void UsesExtensionIfRequested()
+        /// <param name="addExtension">The add extension.</param>
+        /// <param name="fileExtensionExpected">Whether a file extension is expected</param>
+        [Theory(DisplayName = "File extensions are used if requested.")]
+        [InlineData(true, true)]
+        [InlineData(false, false)]
+        [InlineData(null, false)]
+        public void UsesExtensionIfRequested(bool? addExtension, bool fileExtensionExpected)
         {
-            Func<bool?, string> createGravatarUrl = (addExtension) =>
-                {
-                    var uri = CreateGravatarUri(addExtension: addExtension);
-                    return uri.Segments[2];
-                };
+            var uri = this.CreateGravatarUri(addExtension: addExtension);
+            var result = uri.Segments[2];
 
-            Assert.True(createGravatarUrl(true).EndsWith(".jpg"), "Uses a file extension when requested to.");
-            Assert.True(!createGravatarUrl(false).EndsWith(".jpg"), "Does not use a file extension when requested not to.");
-            Assert.True(!createGravatarUrl(null).EndsWith(".jpg"), "Does not use extensions by default.");
+            Assert.True(
+                result.EndsWith(".jpg") == fileExtensionExpected, 
+                string.Format("{0} file extension was expected, result: {1}", fileExtensionExpected ? "A" : "no", result));
         }
 
         /// <summary>
@@ -92,8 +94,8 @@
             this.httpRequest.SecureConnectionResult = false;
             var normalUri = this.CreateGravatarUri();
 
-            Assert.True(secureUri.Scheme == "https", "Https protocl should be used on secure connections by default.");
-            Assert.True(normalUri.Scheme == "http", "Http protocl should be used on normal connections by default.");
+            Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by default.");
+            Assert.True(normalUri.Scheme == "http", "Http protocol should be used on normal connections by default.");
         }
 
         /// <summary>
