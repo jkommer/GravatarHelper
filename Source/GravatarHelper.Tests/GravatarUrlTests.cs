@@ -150,7 +150,7 @@
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <returns>The Gravatar url wrapped inside an Uri.</returns>
-        private static Uri CreateGravatarUri(string email = "MyEmailAddress@example.com", int imageSize = 80, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null)
+        private static Uri CreateGravatarUri(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null)
         {
             var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault);
             return new Uri(url);

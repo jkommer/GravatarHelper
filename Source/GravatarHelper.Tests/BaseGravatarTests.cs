@@ -6,6 +6,16 @@
     public abstract class BaseGravatarTests
     {
         /// <summary>
+        /// Default email address for testing.
+        /// </summary>
+        protected const string DefaultEmailAddress = "MyEmailAddress@example.com";
+
+        /// <summary>
+        /// Default image size for testing.
+        /// </summary>
+        protected const int DefaultImageSize = 80;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BaseGravatarTests"/> class.
         /// </summary>
         public BaseGravatarTests()
