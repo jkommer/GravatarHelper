@@ -10,14 +10,31 @@
     public class GravatarImageTests : BaseGravatarTests
     {
         /// <summary>
-        /// Verifies that CreateGravatarImage returns a valid <img /> tag. 
+        /// Verifies that the src attribute equals CreateGravatarUrl's result regardless of attributes specified.
+        /// </summary>
+        [Fact(DisplayName = "Src attribute equals CreateGravatarUrl's result regardless of attributes specified.")]
+        public void SrcAttributeCannotBeOverriden()
+        {
+            var htmlAttributes = new Dictionary<string, object>
+            {
+                { "src", "http://www.google.com" }
+            };
+
+            var imageTagWithoutAttributes = CreateGravatarImageXml(DefaultEmailAddress, DefaultImageSize, null, null, null, null);
+            var imageTagWithAttributes = CreateGravatarImageXml(DefaultEmailAddress, DefaultImageSize, null, null, null, null, htmlAttributes);
+            var url = GravatarHelper.CreateGravatarUrl(DefaultEmailAddress, DefaultImageSize, null, null, null, null);
+
+            Assert.True(imageTagWithoutAttributes.Attributes["src"].Value == url);
+            Assert.True(imageTagWithAttributes.Attributes["src"].Value == url);
+        }
+
+        /// <summary>
+        /// Verifies that CreateGravatarImage returns a valid <img /> tag.
         /// </summary>
         [Fact(DisplayName = "Should return an img tag.")]
         public void ShouldReturnImgTag()
         {
-            XmlElement element = null;
-
-            Assert.DoesNotThrow(() => { element = CreateGravatarImageXml(); });
+            var element = CreateGravatarImageXml();
             Assert.True(element.Name == "img", string.Format("img tag expected but got {0}", element.Name));
         }
 
@@ -35,7 +52,7 @@
         /// <returns>
         /// The Gravatar img tag wrapped inside a XmlElement.
         /// </returns>
-        private static XmlElement CreateGravatarImageXml(string email = "MyEmailAddress@example.com", int imageSize = 80, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null, IDictionary<string, object> htmlAttributes = null)
+        private static XmlElement CreateGravatarImageXml(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null, IDictionary<string, object> htmlAttributes = null)
         {
             var image = GravatarHelper.CreateGravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault, htmlAttributes);
 
