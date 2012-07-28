@@ -10,6 +10,31 @@
     public class GravatarImageTests : BaseGravatarTests
     {
         /// <summary>
+        /// Verifies that custom attributes can be successfully added to the img tag.
+        /// </summary>
+        [Fact(DisplayName = "Custom attributes can be successfully added to the img tag.")]
+        public void CustomAttributesCanBeAdded()
+        {
+            var htmlAttributes = new Dictionary<string, object>
+            {
+                { "style", "display: block;" },
+                { "alt", "My Gravatar" },
+                { "width", "80px" },
+                { "height", "80px" }
+            };
+
+            var imageTag = CreateGravatarImageXml(htmlAttributes: htmlAttributes);
+
+            foreach (var attribute in htmlAttributes)
+            {
+                var tagAttribute = imageTag.Attributes[attribute.Key];
+
+                Assert.True(tagAttribute != null, string.Format("Attribute {0} was not set.", attribute.Key));
+                Assert.True(tagAttribute.Value.Equals(attribute.Value), string.Format("Attribute {0}'s value was set to {1} expected {2}.", attribute.Key, tagAttribute.Value, attribute.Value));
+            }
+        }
+
+        /// <summary>
         /// Verifies that the src attribute equals CreateGravatarUrl's result regardless of attributes specified.
         /// </summary>
         [Fact(DisplayName = "Src attribute equals CreateGravatarUrl's result regardless of attributes specified.")]

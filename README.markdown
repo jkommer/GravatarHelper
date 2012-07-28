@@ -45,11 +45,13 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
   
   * Fix the position of the optional file extension to be in the correct place within the URL.
   
+  * Make GravatarHelper.MinImageSize and GravatarHelper.MaxImageSize public.
+  
+  * Reference MVC3 assemblies instead of MVC2.
+
   * Introduced unit tests.
   
   * Introduced StyleCop.
-
-  * Make GravatarHelper.MinImageSize and GravatarHelper.MaxImageSize public.
   
 ### 3.1.0
   
