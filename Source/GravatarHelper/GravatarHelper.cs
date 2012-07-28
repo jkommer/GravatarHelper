@@ -151,15 +151,12 @@
 
             if (!string.IsNullOrWhiteSpace(defaultImage))
             {
-                defaultImage = string.Format("&d={0}", HttpUtility.UrlEncode(defaultImage));
+                defaultImage = string.Concat("&d=", HttpUtility.UrlEncode(defaultImage));
             }
 
             return string.Format(
-                "{0}{1}{2}{3}?s={4}{5}{6}{7}",
-                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
-                GravatarImagePath,
-                hash,
-                addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty,
+                "{0}?s={1}{2}{3}{4}",
+                CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty),
                 imageSize,
                 defaultImage,
                 rating.HasValue ? string.Concat("&r=", rating) : string.Empty,
@@ -170,13 +167,11 @@
         /// Returns the Gravatar profile URL for the provided parameters.
         /// </summary>
         /// <param name="email">Email address to generate the Gravatar for.</param>
-        /// <param name="extension">Format extension to add to the url. Default is none, which creates a link to the profile page.</param>
+        /// <param name="extension">Extension to add to the url. Default is none, which creates a link to the profile page.</param>
         /// <param name="optionalParameters">Optional parameters to add to the url.</param>
         /// <returns>The Gravatar profile URL for the provided parameters.</returns>
         public static string CreateGravatarProfileUrl(string email, string extension, object optionalParameters)
         {
-            var hash = CreateGravatarHash(email);
-
             var queryStringParameters = optionalParameters != null ?
                     "?" + string.Join(
                         "&",
@@ -184,13 +179,7 @@
                         .Select(parameter => string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value.ToString()))))
                     : string.Empty;
 
-            return string.Format(
-                "{0}{1}{2}{3}{4}",
-                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
-                GravatarProfilePath,
-                hash,
-                extension != null ? string.Concat(".", extension) : string.Empty,
-                queryStringParameters);
+            return string.Concat(CreateGravatarBaseUrl(email, GravatarProfilePath, extension), queryStringParameters);
         }
 
         /// <summary>
@@ -222,6 +211,24 @@
             }
 
             return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Creates the base Gravatar URL shared by both Gravatar avatars and profiles.
+        /// </summary>
+        /// <param name="email">Email address to generate the Gravatar for.</param>
+        /// <param name="path">The root path on the Gravatar domain for this request use Gravatar*Path.</param>
+        /// <param name="extension">Extension to add to the url.</param>
+        /// <returns>The Gravatar base URL for the provided parameters.</returns>
+        private static string CreateGravatarBaseUrl(string email, string path, string extension)
+        {
+            var hash = CreateGravatarHash(email);
+
+            return string.Concat(
+                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+                path,
+                hash,
+                extension != null ? string.Concat(".", extension) : string.Empty);
         }
     }
 }
