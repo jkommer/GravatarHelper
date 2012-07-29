@@ -10,9 +10,9 @@
     public class GravatarProfileUrlTests : BaseGravatarTests
     {
         /// <summary>
-        /// Verifies that custom query parameters can be added to the url.
+        /// Verifies that custom query parameters can be added to the profile url.
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = "Custom query parameters can be added to the profile url.")]
         public void CanAddCustomQueryParameters()
         {
             var parameters = new

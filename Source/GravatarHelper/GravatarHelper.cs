@@ -176,7 +176,7 @@
                     "?" + string.Join(
                         "&",
                         new RouteValueDictionary(optionalParameters)
-                        .Select(parameter => string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value.ToString()))))
+                        .Select(parameter => string.Concat(parameter.Key, "=", HttpUtility.UrlEncode(parameter.Value.ToString()))))
                     : string.Empty;
 
             return string.Concat(CreateGravatarBaseUrl(email, GravatarProfilePath, extension), queryStringParameters);
