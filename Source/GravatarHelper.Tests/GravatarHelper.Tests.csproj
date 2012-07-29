@@ -54,7 +54,9 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="BaseGravatarTests.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="GravatarImageTests.cs" />
+    <Compile Include="GravatarProfileUrlTests.cs" />
     <Compile Include="HashingTests.cs" />
     <Compile Include="GravatarUrlTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,8 +1,7 @@
 ﻿namespace GravatarHelper.Tests
 {
     using System;
-    using System.Collections.Specialized;
-    using System.Web;
+    using Extensions;
     using Xunit;
     using Xunit.Extensions;
 
@@ -24,7 +23,7 @@
         public void RatingMatchesProvidedGravatarRating(GravatarRating? rating)
         {
             var uri = CreateGravatarUri(rating: rating);
-            var queryParameter = GetQueryParameter(uri, "r");
+            var queryParameter = uri.GetQueryParameter("r");
 
             var result = rating.HasValue ?
                 rating.ToString() == queryParameter :
@@ -45,7 +44,7 @@
         public void ForcesGravatarToServeDefaultImageIfRequested(bool? forceDefault, string expectedValue)
         {
             var uri = CreateGravatarUri(forceDefault: forceDefault);
-            var queryParameter = GetQueryParameter(uri, "f");
+            var queryParameter = uri.GetQueryParameter("f");
 
             Assert.True(queryParameter == expectedValue, string.Format("Query value: {0} did not match expected value: {1}", queryParameter, expectedValue));
         }
@@ -97,7 +96,7 @@
         public void ImageSizeCannotExceedBounds(int imageSize, int expectedSize)
         {
             var uri = CreateGravatarUri(imageSize: imageSize);
-            var querySizeParameter = GetQueryParameter(uri, "s");
+            var querySizeParameter = uri.GetQueryParameter("s");
 
             int querySize;
 
@@ -116,27 +115,6 @@
         {
             var uri = CreateGravatarUri(defaultImage: defaultImage);
             Assert.True(uri.IsWellFormedOriginalString(), string.Format("CreateGravatarUrl did not create a well-formed URI for: {0}", defaultImage));
-        }
-
-        /// <summary>
-        /// Gets the query parameters as a <see cref="NameValueCollection"/>.
-        /// </summary>
-        /// <param name="uri">The URL.</param>
-        /// <returns>A NameValueCollection of all query parameters.</returns>
-        private static NameValueCollection GetQueryParameters(Uri uri)
-        {
-            return HttpUtility.ParseQueryString(uri.Query);
-        }
-
-        /// <summary>
-        /// Gets the query parameter.
-        /// </summary>
-        /// <param name="uri">The URL.</param>
-        /// <param name="parameter">The parameter.</param>
-        /// <returns>The value of the query parameter, null if not specified.</returns>
-        private static string GetQueryParameter(Uri uri, string parameter)
-        {
-            return GetQueryParameters(uri)[parameter];
         }
 
         /// <summary>

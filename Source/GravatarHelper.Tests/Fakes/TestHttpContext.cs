@@ -1,4 +1,4 @@
-﻿namespace GravatarHelper.Tests
+﻿namespace GravatarHelper.Tests.Fakes
 {
     using System.Web;
 
