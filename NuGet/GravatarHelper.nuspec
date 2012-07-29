@@ -4,15 +4,18 @@
     <version></version>
     <authors>Johannes Kommer</authors>
     <owners>Johannes Kommer</owners>
-    <licenseUrl>http://creativecommons.org/publicdomain/zero/1.0/legalcode</licenseUrl>
+    <licenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</licenseUrl>
     <projectUrl>https://bitbucket.org/jkommer/gravatarhelper</projectUrl>
     <id>GravatarHelper</id>
     <title>GravatarHelper</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. Example usage: @Html.GravatarImage("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })</description>
-    <summary />
-    <releaseNotes>- Added support for profile data formats to profile url creation methods. (By David Tischler)
-- Added methods to generate Gravatar profile urls. (By David Tischler)</releaseNotes>
+    <description>A simple ASP.NET MVC3 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. Example usage: @Html.GravatarImage("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })</description>
+    <summary>A simple ASP.NET MVC3 helper for Gravatar.</summary>
+    <releaseNotes>- Fix the position of the optional file extension to be in the correct place within the URL.
+- Make GravatarHelper.MinImageSize and GravatarHelper.MaxImageSize public.
+- Reference MVC3 assemblies instead of MVC2.
+- Introduced unit tests.
+- Introduced StyleCop.</releaseNotes>
     <copyright>Copyright (c) 2012, Johannes Kommer</copyright>
     <language>en-GB</language>
     <tags>MVC3 Gravatar</tags>
