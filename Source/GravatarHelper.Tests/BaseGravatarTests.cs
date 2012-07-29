@@ -1,5 +1,7 @@
 ﻿namespace GravatarHelper.Tests
 {
+    using Fakes;
+
     /// <summary>
     /// Base class for GravatarHelper unit tests. Sets up the GetHttpContext Func to work without a HttpContext.
     /// </summary>
