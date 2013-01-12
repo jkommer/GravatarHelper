@@ -46,6 +46,11 @@
         /// </summary>
         public const string DefaultImageRetro = "retro";
 
+        /// <summary>
+        /// blank: a transparent PNG image
+        /// </summary>
+        public const string DefaultImageBlank = "blank";
+
         #endregion Default Images
 
         /// <summary>
@@ -56,7 +61,7 @@
         /// <summary>
         /// Maximum image size supported by gravatar.
         /// </summary>
-        public const int MaxImageSize = 512;
+        public const int MaxImageSize = 2048;
 
         /// <summary>
         /// Gravatar HTTP url.
