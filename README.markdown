@@ -41,6 +41,12 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 	
 ## Changelog
 
+### 3.2.1
+
+  * Increase MaxImageSize to match new Gravatar maximum size
+  
+  * Add a new constant for the blank default image.
+
 ### 3.2.0
   
   * Fix the position of the optional file extension to be in the correct place within the URL.
