@@ -227,13 +227,11 @@
         /// <returns>The Gravatar base URL for the provided parameters.</returns>
         private static string CreateGravatarBaseUrl(string email, string path, string extension)
         {
-            var hash = CreateGravatarHash(email);
-
             return string.Concat(
                 GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
                 path,
-                hash,
-                extension != null ? string.Concat(".", extension) : string.Empty);
+                CreateGravatarHash(email),
+                !string.IsNullOrWhiteSpace(extension) ? string.Concat(".", extension) : string.Empty);
         }
     }
 }
