@@ -12,7 +12,7 @@ To install GravatarHelper, run the following command in the Package Manager Cons
 
 ## Requirements
 
-  * MVC3
+  * MVC3 or MVC4
   
   * .NET 4 Framework
   
@@ -41,9 +41,13 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 	
 ## Changelog
 
+### 3.2.2
+
+  * No longer include a "." in the URL when no extension has been requested.
+
 ### 3.2.1
 
-  * Increase MaxImageSize to match new Gravatar maximum size
+  * Increase MaxImageSize to match new Gravatar maximum size.
   
   * Add a new constant for the blank default image.
 

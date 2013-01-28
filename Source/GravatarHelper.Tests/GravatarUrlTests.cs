@@ -64,8 +64,8 @@
             var result = uri.Segments[2];
 
             Assert.True(
-                result.EndsWith(".jpg") == fileExtensionExpected, 
-                string.Format("{0} file extension was expected, result: {1}", fileExtensionExpected ? "A" : "no", result));
+                result.EndsWith(".jpg") == fileExtensionExpected && result.Contains(".") == fileExtensionExpected, 
+                string.Format("{0} file extension was expected, result: {1}", fileExtensionExpected ? "A" : "No", result));
         }
 
         /// <summary>
