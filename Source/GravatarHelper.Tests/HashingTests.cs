@@ -25,7 +25,7 @@
                     "myemailaddress@EXAMPLE.COM"
                 };
 
-            var hashes = emails.Select(email => GravatarHelper.CreateGravatarHash(email));
+            var hashes = emails.Select(GravatarHelper.CreateGravatarHash);
 
             Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 
@@ -65,7 +65,7 @@
                     "  MyEmailAddress@example.com  "
                 };
 
-            var hashes = emails.Select(email => GravatarHelper.CreateGravatarHash(email));
+            var hashes = emails.Select(GravatarHelper.CreateGravatarHash);
 
             Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 

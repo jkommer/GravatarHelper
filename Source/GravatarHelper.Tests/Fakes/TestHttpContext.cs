@@ -10,7 +10,7 @@
         /// <summary>
         /// Backing field for Request.
         /// </summary>
-        private HttpRequestBase httpRequest;
+        private readonly HttpRequestBase httpRequest;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestHttpContext"/> class.

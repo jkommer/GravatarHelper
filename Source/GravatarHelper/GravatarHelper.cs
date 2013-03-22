@@ -98,12 +98,12 @@
         {
             get
             { 
-                return GravatarHelper.getHttpContext;
+                return getHttpContext;
             }
 
             set
             {
-                GravatarHelper.getHttpContext = value;
+                getHttpContext = value;
             }
         }
 
@@ -148,8 +148,6 @@
         /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string CreateGravatarUrl(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault)
         {
-            var hash = CreateGravatarHash(email);
-
             // Limit our Gravatar size to be between the minimum and maximum sizes supported by Gravatar.
             imageSize = Math.Max(imageSize, MinImageSize);
             imageSize = Math.Min(imageSize, MaxImageSize);

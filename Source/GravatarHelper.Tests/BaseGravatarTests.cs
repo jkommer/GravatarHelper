@@ -20,7 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseGravatarTests"/> class.
         /// </summary>
-        public BaseGravatarTests()
+        protected BaseGravatarTests()
         {
             this.HttpRequest = new TestHttpRequest();
             GravatarHelper.GetHttpContext = () => new TestHttpContext(this.HttpRequest);
