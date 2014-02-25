@@ -43,7 +43,7 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 
   * Add MVC5 to the package description.
   
-  * Use NuGet to manage our MVC dependancy.
+  * Use NuGet to manage the MVC dependancy.
   
 ### 3.2.2
 
