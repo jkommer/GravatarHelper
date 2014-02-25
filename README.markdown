@@ -12,11 +12,9 @@ To install GravatarHelper, run the following command in the Package Manager Cons
 
 ## Requirements
 
-  * MVC3 or MVC4
+  * MVC3, MVC4 or MVC5
   
-  * .NET 4 Framework
-  
-  * NuGet
+  * .NET 4 Framework or higher
 
 ## Example Usages
 
@@ -41,6 +39,12 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 	
 ## Changelog
 
+### 3.2.3
+
+  * Add MVC5 to the package description.
+  
+  * Use NuGet to manage our MVC dependancy.
+  
 ### 3.2.2
 
   * No longer include a "." in the URL when no extension has been requested.
