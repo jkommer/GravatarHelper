@@ -39,6 +39,10 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 	
 ## Changelog
 
+### 3.3.0
+
+  * Add forceSecureUrl - this can be used to force the use of https gravatar urls over http.
+
 ### 3.2.3
 
   * Add MVC5 to the package description.
