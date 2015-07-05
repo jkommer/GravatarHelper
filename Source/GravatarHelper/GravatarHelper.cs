@@ -118,11 +118,12 @@
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
+        /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar img tag for the provided parameters.</returns>
-        public static MvcHtmlString CreateGravatarImage(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault, IDictionary<string, object> htmlAttributes)
+        public static MvcHtmlString CreateGravatarImage(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault, IDictionary<string, object> htmlAttributes, bool forceSecureUrl = false)
         {
             var imgTag = new TagBuilder("img");
-            imgTag.MergeAttribute("src", CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault));
+            imgTag.MergeAttribute("src", CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl));
 
             if (htmlAttributes != null)
             {
@@ -145,8 +146,9 @@
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
+        /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar URL for the provided parameters.</returns>
-        public static string CreateGravatarUrl(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault)
+        public static string CreateGravatarUrl(string email, int imageSize, string defaultImage, GravatarRating? rating, bool? addExtension, bool? forceDefault, bool forceSecureUrl = false)
         {
             // Limit our Gravatar size to be between the minimum and maximum sizes supported by Gravatar.
             imageSize = Math.Max(imageSize, MinImageSize);
@@ -159,7 +161,7 @@
 
             return string.Format(
                 "{0}?s={1}{2}{3}{4}",
-                CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty),
+                CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty, forceSecureUrl),
                 imageSize,
                 defaultImage,
                 rating.HasValue ? string.Concat("&r=", rating) : string.Empty,
@@ -172,8 +174,9 @@
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="extension">Extension to add to the url. Default is none, which creates a link to the profile page.</param>
         /// <param name="optionalParameters">Optional parameters to add to the url.</param>
+        /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar profile URL for the provided parameters.</returns>
-        public static string CreateGravatarProfileUrl(string email, string extension, object optionalParameters)
+        public static string CreateGravatarProfileUrl(string email, string extension, object optionalParameters, bool forceSecureUrl = false)
         {
             var queryStringParameters = optionalParameters != null ?
                     "?" + string.Join(
@@ -182,7 +185,7 @@
                         .Select(parameter => string.Concat(parameter.Key, "=", HttpUtility.UrlEncode(parameter.Value.ToString()))))
                     : string.Empty;
 
-            return string.Concat(CreateGravatarBaseUrl(email, GravatarProfilePath, extension), queryStringParameters);
+            return string.Concat(CreateGravatarBaseUrl(email, GravatarProfilePath, extension, forceSecureUrl), queryStringParameters);
         }
 
         /// <summary>
@@ -222,11 +225,12 @@
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="path">The root path on the Gravatar domain for this request use Gravatar*Path.</param>
         /// <param name="extension">Extension to add to the url.</param>
+        /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar base URL for the provided parameters.</returns>
-        private static string CreateGravatarBaseUrl(string email, string path, string extension)
+        private static string CreateGravatarBaseUrl(string email, string path, string extension, bool forceSecureUrl = false)
         {
             return string.Concat(
-                GetHttpContext().Request.IsSecureConnection ? GravatarSecureUrl : GravatarUrl,
+                (forceSecureUrl || GetHttpContext().Request.IsSecureConnection) ? GravatarSecureUrl : GravatarUrl,
                 path,
                 CreateGravatarHash(email),
                 !string.IsNullOrWhiteSpace(extension) ? string.Concat(".", extension) : string.Empty);
