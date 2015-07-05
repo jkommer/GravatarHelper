@@ -85,6 +85,22 @@
         }
 
         /// <summary>
+        /// Verifies that CreateGravatarUrl can be forced to https based on ForceSecureUrl.
+        /// </summary>
+        [Fact(DisplayName = "Can force https.")]
+        public void CanForceHttps()
+        {
+            HttpRequest.SecureConnectionResult = true;
+            var secureUri = CreateGravatarUri(forceSecureUrl: true);
+
+            HttpRequest.SecureConnectionResult = false;
+            var normalUri = CreateGravatarUri(forceSecureUrl: true);
+
+            Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by when ForceSecureUrl = true.");
+            Assert.True(normalUri.Scheme == "https", "Https protocol should be used on normal connections by when ForceSecureUrl = true.");
+        }
+
+        /// <summary>
         /// Verify that the Gravatar size cannot exceed either minimum or maximum size.
         /// </summary>
         /// <param name="imageSize">Size of the image.</param>
@@ -127,10 +143,11 @@
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="addExtension">Whether to add the .jpg extension to the provided Gravatar.</param>
         /// <param name="forceDefault">Forces Gravatar to always serve the default image.</param>
+        /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar url wrapped inside an Uri.</returns>
-        private static Uri CreateGravatarUri(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null)
+        private static Uri CreateGravatarUri(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null, bool forceSecureUrl = false)
         {
-            var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault);
+            var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl);
             return new Uri(url);
         }
     }
