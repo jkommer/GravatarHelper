@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple ASP.NET MVC3/4/5 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. Example usage: @Html.GravatarImage("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })</description>
     <summary>A simple ASP.NET MVC3/4/5 helper for Gravatar.</summary>
-    <releaseNotes>- Use NuGet to manage the MVC dependancy.
-- Update package description to include MVC5</releaseNotes>
+    <releaseNotes>- Add forceSecureUrl - this can be used to force the use of https gravatar urls over http.
+- Expose forceSecureUrl through the static helpers.</releaseNotes>
     <copyright>Copyright (c) 2012, Johannes Kommer</copyright>
     <language>en-GB</language>
     <tags>MVC5 MVC4 MVC3 Gravatar</tags>
