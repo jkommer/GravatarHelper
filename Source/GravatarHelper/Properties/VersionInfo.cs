@@ -12,5 +12,5 @@
 // [assembly: AssemblyVersion("1.0.*")]
 
 // Please note: GravatarHelper uses Semantic Versioning. Please see http://semver.org for more details.
-[assembly: AssemblyVersion("3.3.0")]
-[assembly: AssemblyFileVersion("3.3.0")]
+[assembly: AssemblyVersion("3.3.1")]
+[assembly: AssemblyFileVersion("3.3.1")]
