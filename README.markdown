@@ -39,6 +39,10 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 	
 ## Changelog
 
+### 3.3.2
+
+  * Fix config transformation indentation.
+
 ### 3.3.1
 
   * Expose forceSecureUrl through the static helpers.
