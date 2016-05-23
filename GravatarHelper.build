@@ -13,8 +13,12 @@
     <UsingTask AssemblyFile="$(MSBuildExtensionsDir)\msbuild.community.tasks.dll" TaskName="MSBuild.Community.Tasks.XmlUpdate" />
     <UsingTask AssemblyFile="$(xUnitDir)\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
 	
-	<Target Name="default" DependsOnTargets="BuildAndDeploy; Test; Package" />
+	<Target Name="default" DependsOnTargets="PackageRestore; BuildAndDeploy; Test; Package" />
 	
+	<Target Name="PackageRestore">
+		<Exec Command="$(BaseDir)\Tools\NuGet\nuget.exe restore $(BaseDir)\Source\GravatarHelper.sln" />
+	</Target>
+
     <Target Name="BuildAndDeploy">
 		<MSBuild Projects="$(SolutionFile)" Targets="Clean; Build" Properties="Configuration=$(Configuration);BuildConstants=NET40;TargetFrameworkVersion=v4.0" />		
 		
