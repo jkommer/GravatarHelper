@@ -1,6 +1,8 @@
 GravatarHelper
 ==============
 
+[![Build status](https://ci.appveyor.com/api/projects/status/s5c2q3ubjyaih8rl/branch/master?svg=true)](https://ci.appveyor.com/project/jkommer/gravatarhelper/branch/master)
+
 A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. 
 
 ## Installation

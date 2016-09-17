@@ -1,0 +1,21 @@
+version: 3.4.0.{build}
+
+branches:
+  except:
+    - gh-pages
+
+before_build:
+- cmd: nuget restore Source/GravatarHelper.sln
+
+image: Visual Studio 2015
+
+platform: Any CPU
+configuration: Release
+
+build:
+  parallel: true  
+  project: source/GravatarHelper.sln
+  verbosity: minimal
+
+after_build:
+- nuget pack NuGet\GravatarHelper.nuspec -Version %appveyor_build_version%
