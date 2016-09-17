@@ -1,5 +1,12 @@
 version: 3.4.0.{build}
 
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
 branches:
   except:
     - gh-pages
@@ -22,5 +29,5 @@ after_build:
 - 7z a GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GravatarHelper\bin\%CONFIGURATION%\*.dll
 
 artifacts:
-- path: GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip
-- path: GravatarHelper.%APPVEYOR_BUILD_VERSION%.nupkg
+- path: GravatarHelper-$(APPVEYOR_BUILD_VERSION).zip
+- path: GravatarHelper.$(APPVEYOR_BUILD_VERSION).nupkg

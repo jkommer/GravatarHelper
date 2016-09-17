@@ -19,4 +19,9 @@
   	<dependency id="Microsoft.AspNet.Mvc" version="3.0.20105.1" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="..\GravatarHelper\bin\Release\GravatarHelper.dll" target="lib\net40\" />
+    <file src="..\GravatarHelper\bin\Release\GravatarHelper.xml" target="lib\net40\" />
+    <file src="Content\Views\**" target="Content\Views\" />
+  </files>  
 </package>
