@@ -19,3 +19,8 @@ build:
 
 after_build:
 - nuget pack NuGet\GravatarHelper.nuspec -Version %appveyor_build_version%
+- 7z a GravatarHelper-%appveyor_build_version%.zip %APPVEYOR_BUILD_FOLDER%\Source\GravatarHelper\bin\%CONFIGURATION%\*.dll
+
+artifacts:
+- path: '**\*.zip'
+- path: '**\*.nupkg'
