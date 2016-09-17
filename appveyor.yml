@@ -5,7 +5,7 @@ branches:
     - gh-pages
 
 before_build:
-- cmd: nuget restore Source/GravatarHelper.sln
+- cmd: nuget restore GravatarHelper.sln
 
 image: Visual Studio 2015
 
@@ -14,13 +14,13 @@ configuration: Release
 
 build:
   parallel: true  
-  project: source/GravatarHelper.sln
+  project: GravatarHelper.sln
   verbosity: minimal
 
 after_build:
-- nuget pack NuGet\GravatarHelper.nuspec -Version %appveyor_build_version%
-- 7z a GravatarHelper-%appveyor_build_version%.zip %APPVEYOR_BUILD_FOLDER%\Source\GravatarHelper\bin\%CONFIGURATION%\*.dll
+- nuget pack NuGet\GravatarHelper.nuspec -Version %APPVEYOR_BUILD_VERSION%
+- 7z a GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GravatarHelper\bin\%CONFIGURATION%\*.dll
 
 artifacts:
-- path: '**\*.zip'
-- path: '**\*.nupkg'
+- path: GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip
+- path: GravatarHelper.%APPVEYOR_BUILD_VERSION%.nupkg
