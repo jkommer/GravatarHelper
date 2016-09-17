@@ -30,8 +30,8 @@ build:
 test_script: 
 - ps: |
     $openCover = (Resolve-Path "packages/OpenCover.*/tools/OpenCover.Console.exe").ToString()    
-    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -output:opencoverCoverage.xml -returntargetcode
-    
+    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -filter:"+[GravatarHelper*]*" -output:opencoverCoverage.xml -returntargetcode
+
 - cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
 - cmd: pip install codecov
 - cmd: codecov -f "opencoverCoverage.xml"
