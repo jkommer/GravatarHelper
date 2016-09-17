@@ -1,5 +1,17 @@
 version: 3.4.0.{build}
 
+image: Visual Studio 2015
+
+platform: Any CPU
+configuration: Release
+
+branches:
+  except:
+    - gh-pages
+
+init:
+- git config --global core.autocrlf true
+
 assembly_info:
   patch: true
   file: AssemblyInfo.*
@@ -7,22 +19,22 @@ assembly_info:
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
 
-branches:
-  except:
-    - gh-pages
-
 before_build:
 - cmd: nuget restore GravatarHelper.sln
-
-image: Visual Studio 2015
-
-platform: Any CPU
-configuration: Release
 
 build:
   parallel: true  
   project: GravatarHelper.sln
   verbosity: minimal
+
+test_script: 
+- ps: |
+    $openCover = (Resolve-Path "packages/OpenCover.*/tools/OpenCover.Console.exe").ToString()    
+    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -output:opencoverCoverage.xml -returntargetcode
+    
+- cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+- cmd: pip install codecov
+- cmd: codecov -f "opencoverCoverage.xml"
 
 after_build:
 - nuget pack NuGet\GravatarHelper.nuspec -Version %APPVEYOR_BUILD_VERSION%
@@ -31,3 +43,6 @@ after_build:
 artifacts:
 - path: GravatarHelper-$(APPVEYOR_BUILD_VERSION).zip
 - path: GravatarHelper.$(APPVEYOR_BUILD_VERSION).nupkg
+
+cache:
+  - packages -> **\packages.config
