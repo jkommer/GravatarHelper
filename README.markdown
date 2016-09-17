@@ -7,8 +7,9 @@ A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelp
 
 To install GravatarHelper, run the following command in the Package Manager Console
 
-	:::console
-	Install-Package GravatarHelper
+```console
+Install-Package GravatarHelper
+```
 
 ## Requirements
 
@@ -20,23 +21,26 @@ To install GravatarHelper, run the following command in the Package Manager Cons
 
 Create a Gravatar img tag for "MyEmailAddress@example.com", 80 pixels large with "My Gravatar" as title  and "Gravatar" as alt text.
 
-	:::text
-	@Html.Gravatar("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })
-	
+```csharp
+@Html.Gravatar("MyEmailAddress@example.com", 80, new { Title = "My Gravatar", Alt = "Gravatar" })
+```
+
 Create a Gravatar link for "MyEmailAddress@example.com", 80 pixels large with "Identicon" as the default image.
 
-	:::text
-	<a href="@Url.Gravatar("MyEmailAddress@example.com", 80, GravatarHelper.DefaultImageIdenticon)">Your Gravatar</a>
-	
+```csharp
+<a href="@Url.Gravatar("MyEmailAddress@example.com", 80, GravatarHelper.DefaultImageIdenticon)">Your Gravatar</a>
+```
+
 Create a Gravatar Profile link for "MyEmailAddress@example.com".
-	
-	:::text
-	<a href="@Url.GravatarProfile("MyEmailAddress@example.com")">Your Gravatar Profile</a>
+  
+```csharp 
+<a href="@Url.GravatarProfile("MyEmailAddress@example.com")">Your Gravatar Profile</a>
+```
 
 ## License
 
 GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication][1]
-	
+  
 ## Changelog
 
 ### 3.3.2
@@ -106,7 +110,7 @@ GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain 
 ### 1.0.1
 
   * Implement Web.Config transformations to support @Html.GravatarImage() automatically.
-	
+  
   * No longer require a DefaultImage to be specified.
 
 ### 1.0.0
