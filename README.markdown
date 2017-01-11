@@ -4,6 +4,7 @@ GravatarHelper
 [![NuGet Badge](https://buildstats.info/nuget/GravatarHelper)](https://www.nuget.org/packages/GravatarHelper/)
 [![Build status](https://ci.appveyor.com/api/projects/status/s5c2q3ubjyaih8rl/branch/master?svg=true)](https://ci.appveyor.com/project/jkommer/gravatarhelper/branch/master)
 [![codecov](https://codecov.io/gh/jkommer/GravatarHelper/branch/master/graph/badge.svg)](https://codecov.io/gh/jkommer/GravatarHelper)
+[![license](https://img.shields.io/github/license/jkommer/gravatarhelper.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper. 
 
