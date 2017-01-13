@@ -1,10 +1,9 @@
-﻿namespace GravatarHelper.Tests
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using Xunit;
-    using Xunit.Extensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Xunit;
 
+namespace GravatarHelper.Tests
+{
     /// <summary>
     /// Test which verify the functionality of CreateGravatarHash.
     /// </summary>

@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GravatarHelper.Tests")]
-[assembly: AssemblyDescription("GravatarHelper unit tests.")]
+[assembly: AssemblyTitle("GravatarHelper")]
+[assembly: AssemblyDescription("A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GravatarHelper.Tests")]
+[assembly: AssemblyProduct("GravatarHelper")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,6 +20,9 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7889dad6-756f-4604-882a-8f0662e361a2")]
+[assembly: Guid("a9529424-ae7c-4219-ae39-1cf257a86f74")]
+
+// To allow unit tests to replace GetHttpContext.
+[assembly: InternalsVisibleTo("GravatarHelper.Tests")]
 
 // Version info is specified in VersionInfo.cs.

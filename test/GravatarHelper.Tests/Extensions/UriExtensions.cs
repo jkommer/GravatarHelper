@@ -1,22 +1,23 @@
-﻿namespace GravatarHelper.Tests.Extensions
-{
-    using System;
-    using System.Collections.Specialized;
-    using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.WebUtilities;
 
+namespace GravatarHelper.Tests.Extensions
+{
     /// <summary>
     /// Extension methods for <see cref="Uri"/>.
     /// </summary>
     public static class UriExtensions
     {
         /// <summary>
-        /// Gets the query parameters as a <see cref="NameValueCollection"/>.
+        /// Gets the query parameters.
         /// </summary>
         /// <param name="uri">The URL.</param>
         /// <returns>A NameValueCollection of all query parameters.</returns>
-        public static NameValueCollection GetQueryParameters(this Uri uri)
+        public static IDictionary<string, StringValues> GetQueryParameters(this Uri uri)
         {
-            return HttpUtility.ParseQueryString(uri.Query);
+            return QueryHelpers.ParseQuery(uri.Query);
         }
 
         /// <summary>
@@ -27,7 +28,12 @@
         /// <returns>The value of the query parameter, null if not specified.</returns>
         public static string GetQueryParameter(this Uri uri, string parameter)
         {
-            return GetQueryParameters(uri)[parameter];
+            var parameters = GetQueryParameters(uri);
+
+            if (parameters.TryGetValue(parameter, out StringValues value))
+                return value;
+
+            return null;
         }
     }
 }

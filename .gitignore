@@ -119,8 +119,10 @@ _TeamCity*
 *.coveragexml
 
 # NCrunch
+*.ncrunch*
 _NCrunch_*
-.*crunch*.local.xml
+*.crunch.xml
+*.ncrunchsolution*
 nCrunchTemp_*
 
 # MightyMoose

@@ -1,10 +1,9 @@
-﻿namespace GravatarHelper.Tests
-{
-    using System;
-    using Extensions;
-    using Xunit;
-    using Xunit.Extensions;
+﻿using System;
+using GravatarHelper.Tests.Extensions;
+using Xunit;
 
+namespace GravatarHelper.Tests
+{
     /// <summary>
     /// Test which verify the functionality of CreateGravatarUrl.
     /// </summary>
@@ -71,34 +70,34 @@
         /// <summary>
         /// Verifies that CreateGravatarUrl automatically switches between http and https depending on IsSecureConnection.
         /// </summary>
-        [Fact(DisplayName = "Automatically determine whether to use http or https.")]
-        public void AutomaticallyUseHttpAndHttps()
-        {
-            HttpRequest.SecureConnectionResult = true;
-            var secureUri = CreateGravatarUri();
+        //[Fact(DisplayName = "Automatically determine whether to use http or https.")]
+        //public void AutomaticallyUseHttpAndHttps()
+        //{
+        //    HttpRequest.SecureConnectionResult = true;
+        //    var secureUri = CreateGravatarUri();
 
-            HttpRequest.SecureConnectionResult = false;
-            var normalUri = CreateGravatarUri();
+        //    HttpRequest.SecureConnectionResult = false;
+        //    var normalUri = CreateGravatarUri();
 
-            Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by default.");
-            Assert.True(normalUri.Scheme == "http", "Http protocol should be used on normal connections by default.");
-        }
+        //    Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by default.");
+        //    Assert.True(normalUri.Scheme == "http", "Http protocol should be used on normal connections by default.");
+        //}
 
         /// <summary>
         /// Verifies that CreateGravatarUrl can be forced to https based on ForceSecureUrl.
         /// </summary>
-        [Fact(DisplayName = "Can force https.")]
-        public void CanForceHttps()
-        {
-            HttpRequest.SecureConnectionResult = true;
-            var secureUri = CreateGravatarUri(forceSecureUrl: true);
+        //[Fact(DisplayName = "Can force https.")]
+        //public void CanForceHttps()
+        //{
+        //    HttpRequest.SecureConnectionResult = true;
+        //    var secureUri = CreateGravatarUri(forceSecureUrl: true);
 
-            HttpRequest.SecureConnectionResult = false;
-            var normalUri = CreateGravatarUri(forceSecureUrl: true);
+        //    HttpRequest.SecureConnectionResult = false;
+        //    var normalUri = CreateGravatarUri(forceSecureUrl: true);
 
-            Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by when ForceSecureUrl = true.");
-            Assert.True(normalUri.Scheme == "https", "Https protocol should be used on normal connections by when ForceSecureUrl = true.");
-        }
+        //    Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by when ForceSecureUrl = true.");
+        //    Assert.True(normalUri.Scheme == "https", "Https protocol should be used on normal connections by when ForceSecureUrl = true.");
+        //}
 
         /// <summary>
         /// Verify that the Gravatar size cannot exceed either minimum or maximum size.
