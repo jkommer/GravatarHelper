@@ -27,12 +27,12 @@ install:
 #  assembly_informational_version: "{version}"
 
 before_build:
-- cmd: dotnet restore -v Minimal
-- cmd: nuget restore GravatarHelper.sln # Needed for GravatarHelper.AspNet
+- appveyor-retry dotnet restore -v Minimal
 
 build_script:
-  - ps: dotnet --info
-  - ps: dotnet build
+- ps: dotnet --info
+#- ps: dotnet build
+- ps: dotnet msbuild /m:1
 
 #test_script: 
 #- ps: |
