@@ -1,9 +1,12 @@
-version: 3.4.0.{build}
+version: 4.0.0.{build}
 
 image: Visual Studio 2015
 
 platform: Any CPU
 configuration: Release
+
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 branches:
   except:
@@ -12,37 +15,46 @@ branches:
 init:
 - git config --global core.autocrlf true
 
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
+install:
+- ps: appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=838401 -FileName "c:\dotnet.exe" # dotnet-dev-win-x64.1.0.0-preview4-004233.exe 
+- cmd: call c:\dotnet.exe /quiet
+
+#assembly_info:
+#  patch: true
+#  file: AssemblyInfo.*
+#  assembly_version: "{version}"
+#  assembly_file_version: "{version}"
+#  assembly_informational_version: "{version}"
 
 before_build:
-- cmd: nuget restore GravatarHelper.sln
+- cmd: dotnet restore -v Minimal
+- cmd: nuget restore GravatarHelper.sln # Needed for GravatarHelper.AspNet
 
-build:
-  parallel: true  
-  project: GravatarHelper.sln
-  verbosity: minimal
+build_script:
+  - ps: dotnet --info
+  - ps: dotnet build
 
-test_script: 
-- ps: |
-    $openCover = (Resolve-Path "packages/OpenCover.*/tools/OpenCover.Console.exe").ToString()    
-    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -filter:"+[GravatarHelper*]*" -output:opencoverCoverage.xml -returntargetcode
+#test_script: 
+#- ps: |
+#    $openCover = (Resolve-Path "packages/OpenCover.*/tools/OpenCover.Console.exe").ToString()    
+#    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -filter:"+[GravatarHelper*]*" -output:opencoverCoverage.xml -returntargetcode
+#
+#- cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+#- cmd: pip install codecov
+#- cmd: codecov -f "opencoverCoverage.xml"
 
-- cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-- cmd: pip install codecov
-- cmd: codecov -f "opencoverCoverage.xml"
+#after_build:
+#- nuget pack NuGet\GravatarHelper.nuspec -Version %APPVEYOR_BUILD_VERSION%
+#- 7z a GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GravatarHelper\bin\%CONFIGURATION%\*.dll
 
-after_build:
-- nuget pack NuGet\GravatarHelper.nuspec -Version %APPVEYOR_BUILD_VERSION%
-- 7z a GravatarHelper-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GravatarHelper\bin\%CONFIGURATION%\*.dll
-
-artifacts:
-- path: GravatarHelper-$(APPVEYOR_BUILD_VERSION).zip
-- path: GravatarHelper.$(APPVEYOR_BUILD_VERSION).nupkg
+#artifacts:
+#- path: GravatarHelper-$(APPVEYOR_BUILD_VERSION).zip
+#- path: GravatarHelper.$(APPVEYOR_BUILD_VERSION).nupkg
 
 cache:
-  - packages -> **\packages.config
+  - c:\dotnet.exe -> appveyor.yml # Remove from cache when this file gets updated as the NET Core version might have changed.
+ # - packages -> **\packages.config
+ # - '%USERPROFILE%\.nuget\packages -> *.csproj, appveyor.yml'
+
+#on_finish:
+#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
