@@ -16,8 +16,16 @@ init:
 - git config --global core.autocrlf true
 
 install:
-- ps: appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=838401 -FileName "c:\dotnet.exe" # dotnet-dev-win-x64.1.0.0-preview4-004233.exe 
-- cmd: call c:\dotnet.exe /quiet
+# Ensure downloads folder exists.
+- cmd: if not exist "c:\downloads" mkdir "c:\downloads"
+
+# We need to update the dotnet environment as we use the new csproj format.
+- cmd: if not exist "c:\downloads\dotnet.exe" appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=838401 -FileName "c:\downloads\dotnet.exe" # dotnet-dev-win-x64.1.0.0-preview4-004233.exe 
+- cmd: call c:\downloads\dotnet.exe /quiet
+
+# The current versions of OpenCover do not support the new PDB format - download a pre-release version which does.
+- cmd: if not exist "c:\downloads\OpenCover.zip" appveyor DownloadFile https://ci.appveyor.com/api/buildjobs/xj78v6dac42uob8q/artifacts/main/bin/zip/opencover.4.6.589.zip -FileName "c:\downloads\OpenCover.zip" # OpenCover 4.6.589.zip
+- cmd: 7z x c:\downloads\OpenCover.zip -oc:\OpenCover\
 
 #assembly_info:
 #  patch: true
@@ -31,17 +39,15 @@ before_build:
 
 build_script:
 - ps: dotnet --info
-#- ps: dotnet build
-- ps: dotnet msbuild /m:1
+# We currently have to use msbuild /m:1 rather than dotnet build - see https://github.com/dotnet/cli/issues/4786
+#- ps: dotnet build -c $ENV:CONFIGURATION
+- ps: dotnet msbuild /m:1 /p:Configuration=$ENV:CONFIGURATION
 
-#test_script: 
-#- ps: |
-#    $openCover = (Resolve-Path "packages/OpenCover.*/tools/OpenCover.Console.exe").ToString()    
-#    & $openCover -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:""GravatarHelper.Tests\bin\$env:CONFIGURATION\GravatarHelper.Tests.dll"" -noshadow -appveyor" -filter:"+[GravatarHelper*]*" -output:opencoverCoverage.xml -returntargetcode
-#
-#- cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-#- cmd: pip install codecov
-#- cmd: codecov -f "opencoverCoverage.xml"
+test_script: 
+- ps: .\build\scripts\run-tests.ps1
+- cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+- cmd: pip install codecov
+- cmd: codecov -f "%APPVEYOR_BUILD_FOLDER%\opencoverCoverage.xml"
 
 #after_build:
 #- nuget pack NuGet\GravatarHelper.nuspec -Version %APPVEYOR_BUILD_VERSION%
@@ -52,9 +58,6 @@ build_script:
 #- path: GravatarHelper.$(APPVEYOR_BUILD_VERSION).nupkg
 
 cache:
-  - c:\dotnet.exe -> appveyor.yml # Remove from cache when this file gets updated as the NET Core version might have changed.
- # - packages -> **\packages.config
- # - '%USERPROFILE%\.nuget\packages -> *.csproj, appveyor.yml'
-
-#on_finish:
-#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - c:\downloads\dotnet.exe -> appveyor.yml
+  - c:\downloads\OpenCover.zip -> appveyor.yml
+  - '%USERPROFILE%\.nuget\packages -> *.csproj, appveyor.yml'
