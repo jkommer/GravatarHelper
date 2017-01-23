@@ -4,15 +4,20 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5F7BE44E-79A8-4166-9D00-F0F9F4B1CC8E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GravatarHelper.AspNet</RootNamespace>
     <AssemblyName>GravatarHelper.AspNet</AssemblyName>
     <TargetFrameworks>net462</TargetFrameworks>
     <FileAlignment>512</FileAlignment>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <OldToolsVersion>15.0</OldToolsVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>    
-  </PropertyGroup>
+    <Authors>jkommer</Authors>
+    <Version>1.0.0</Version>
+    <Description>A simple ASP.NET MVC5 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.</Description>
+    <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright (c) 2012, Johannes Kommer.</Copyright>
+    <PackageTags>MVC5 Gravatar</PackageTags>
+ </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -31,5 +36,6 @@
   </ItemGroup>
   <ItemGroup>
       <Compile Include="**/*.cs" />
+      <Content Include="**/*.xdt" />
   </ItemGroup>
 </Project>

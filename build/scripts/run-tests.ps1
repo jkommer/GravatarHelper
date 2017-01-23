@@ -1,4 +1,5 @@
-$projectRoot = Resolve-Path("$PSScriptRoot\..\..\")
+. $PSScriptRoot\variables.ps1
+
 $openCover = "c:\OpenCover\OpenCover.Console.exe"
 
 $filter = '-filter:"+[GravatarHelper*]*'
