@@ -35,7 +35,7 @@ test_script:
   - ps: .\build\scripts\run-tests.ps1
   - cmd: "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - cmd: pip install codecov
-  - cmd: codecov -f "%APPVEYOR_BUILD_FOLDER%\opencoverCoverage.xml"
+  - cmd: codecov -f "%APPVEYOR_BUILD_FOLDER%\artifacts\opencoverCoverage.xml"
 
 after_build:
   - ps: .\build\scripts\create-packages.ps1
