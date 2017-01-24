@@ -1,20 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+	<TargetFrameworks>netstandard1.5;net45</TargetFrameworks>
     <Authors>jkommer</Authors>
-    <Version>4.0.0</Version>
+    <VersionPrefix>4.0.0</VersionPrefix>
     <Description>A simple ASP.NET MVC5 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.</Description>
     <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright (c) 2012, Johannes Kommer.</Copyright>
-    <PackageTags>Gravatar</PackageTags>  </PropertyGroup>
+    <PackageTags>Gravatar</PackageTags>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>  
 </Project>
