@@ -4,7 +4,9 @@ $openCover = "c:\OpenCover\OpenCover.Console.exe"
 
 $filter = '-filter:"+[GravatarHelper*]*'
 
-Remove-Item $artifactDirectory\opencoverCoverage.xml
+If (Test-Path $artifactDirectory\opencoverCoverage.xml) {
+    Remove-Item $artifactDirectory\opencoverCoverage.xml
+}
 
 ForEach ($project in (Get-ChildItem -Path $testDirectory -File -Recurse -Filter *.csproj)) { 
     $targetArgs = "-targetargs: test " + $project.FullName    
