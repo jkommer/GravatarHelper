@@ -33,7 +33,6 @@
     <ProjectReference Include="..\..\src\GravatarHelper\GravatarHelper.csproj" />    
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="**/*.cs" />
       <Content Include="**/*.xdt" />
   </ItemGroup>
 </Project>
