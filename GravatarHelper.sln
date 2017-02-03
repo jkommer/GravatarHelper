@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26009.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{37F58587-AE56-4A9A-992C-4D8988B67019}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravatarHelper", "src\GravatarHelper\GravatarHelper.csproj", "{681281C3-0691-4BAA-985E-862EECA49901}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravatarHelper.Common", "src\GravatarHelper.Common\GravatarHelper.Common.csproj", "{681281C3-0691-4BAA-985E-862EECA49901}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BCD29D8-9A2E-435F-894B-287A91CFFA00}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GravatarHelper.AspNetCore", "src\GravatarHelper.AspNetCore\GravatarHelper.AspNetCore.csproj", "{932E0CE1-58B8-4A90-B3DB-0887CA8F0454}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravatarHelper.AspNet", "src\GravatarHelper.AspNet\GravatarHelper.AspNet.csproj", "{5F7BE44E-79A8-4166-9D00-F0F9F4B1CC8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravatarHelper", "src\GravatarHelper\GravatarHelper.csproj", "{5F7BE44E-79A8-4166-9D00-F0F9F4B1CC8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravatarHelper.Tests", "tests\GravatarHelper.Tests\GravatarHelper.Tests.csproj", "{032E4489-30F8-4B68-AD22-9E92F57F5219}"
 EndProject

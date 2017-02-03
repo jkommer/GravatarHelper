@@ -11,6 +11,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta5-*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GravatarHelper\GravatarHelper.csproj" />
+    <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />
   </ItemGroup>
 </Project>
