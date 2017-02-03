@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Net;
 
-namespace GravatarHelper
+namespace GravatarHelper.Common
 {
     /// <summary>
     /// A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.
@@ -104,13 +104,7 @@ namespace GravatarHelper
                 defaultImage = string.Concat("&d=", WebUtility.UrlEncode(defaultImage));
             }
 
-            return string.Format(
-                   "{0}?s={1}{2}{3}{4}",
-                   CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty, useSecureUrl),
-                   imageSize,
-                   defaultImage,
-                   rating.HasValue ? string.Concat("&r=", rating) : string.Empty,
-                   forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty);
+            return $"{CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty, useSecureUrl)}?s={imageSize}{defaultImage}{(rating.HasValue ? string.Concat("&r=", rating) : string.Empty)}{(forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty)}";
         }
 
         /// <summary>

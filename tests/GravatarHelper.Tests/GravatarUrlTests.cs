@@ -105,9 +105,9 @@ namespace GravatarHelper.Tests
         /// <param name="imageSize">Size of the image.</param>
         /// <param name="expectedSize">The expected size.</param>
         [Theory(DisplayName = "Image size cannot exceed either minimum or maximum size.")]
-        [InlineData(GravatarHelper.MinImageSize - 1, GravatarHelper.MinImageSize)]
-        [InlineData((GravatarHelper.MinImageSize + GravatarHelper.MaxImageSize) / 2, (GravatarHelper.MinImageSize + GravatarHelper.MaxImageSize) / 2)]
-        [InlineData(GravatarHelper.MaxImageSize + 1, GravatarHelper.MaxImageSize)]
+        [InlineData(Common.GravatarHelper.MinImageSize - 1, Common.GravatarHelper.MinImageSize)]
+        [InlineData((Common.GravatarHelper.MinImageSize + Common.GravatarHelper.MaxImageSize) / 2, (Common.GravatarHelper.MinImageSize + Common.GravatarHelper.MaxImageSize) / 2)]
+        [InlineData(Common.GravatarHelper.MaxImageSize + 1, Common.GravatarHelper.MaxImageSize)]
         public void ImageSizeCannotExceedBounds(int imageSize, int expectedSize)
         {
             var uri = CreateGravatarUri(imageSize: imageSize);
@@ -124,7 +124,7 @@ namespace GravatarHelper.Tests
         /// </summary>
         /// <param name="defaultImage">The default image.</param>
         [Theory(DisplayName = "Generated URL is well-formed.")]
-        [InlineData(GravatarHelper.DefaultImageIdenticon)]
+        [InlineData(Common.GravatarHelper.DefaultImageIdenticon)]
         [InlineData("http://example.com/logo.jpg")]
         public void UrlIsWellFormed(string defaultImage)
         {
@@ -146,7 +146,7 @@ namespace GravatarHelper.Tests
         /// <returns>The Gravatar url wrapped inside an Uri.</returns>
         private static Uri CreateGravatarUri(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null, bool forceSecureUrl = false)
         {
-            var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl);
+            var url = Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl);
             return new Uri(url);
         }
     }

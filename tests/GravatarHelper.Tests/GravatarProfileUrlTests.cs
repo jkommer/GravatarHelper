@@ -41,7 +41,7 @@ namespace GravatarHelper.Tests
         /// <returns>The Gravatar profile url wrapped inside an Uri.</returns>
         private static Uri CreateGravatarProfileUri(string email = DefaultEmailAddress, string extension = null, IDictionary<string, string> optionalParameters = null, bool useSecureUrl = false)
         {
-            var url = GravatarHelper.CreateGravatarProfileUrl(email, extension, optionalParameters, useSecureUrl);
+            var url = Common.GravatarHelper.CreateGravatarProfileUrl(email, extension, optionalParameters, useSecureUrl);
             return new Uri(url);
         }
     }

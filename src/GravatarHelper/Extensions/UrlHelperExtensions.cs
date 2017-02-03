@@ -29,7 +29,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarUrl(email, imageSize, null, null, null, null, forceSecureUrl || IsSecureConnection());
+            return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, null, null, null, null, forceSecureUrl || IsSecureConnection());
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, null, null, null, forceSecureUrl || IsSecureConnection());
+            return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, null, null, null, forceSecureUrl || IsSecureConnection());
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, null, null, forceSecureUrl || IsSecureConnection());
+            return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, null, null, forceSecureUrl || IsSecureConnection());
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>The Gravatar URL for the provided parameters.</returns>
         public static string GravatarProfile(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarProfileUrl(email, null, null, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, null, null, forceSecureUrl);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>A URL to the Gravatar profile data formatted as JSON.</returns>
         public static string GravatarProfileAsJSON(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarProfileUrl(email, "json", null, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "json", null, forceSecureUrl);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace GravatarHelper.AspNet.Extensions
                 { "Callback", callback}
             };
 
-            return GravatarHelper.CreateGravatarProfileUrl(email, "json", optionalParameters, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "json", optionalParameters, forceSecureUrl);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>A URL to the Gravatar profile data formatted as vCard.</returns>
         public static string GravatarProfileAsVCard(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarProfileUrl(email, "vcf", null, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "vcf", null, forceSecureUrl);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>A URL to the Gravatar profile data formatted as XML.</returns>
         public static string GravatarProfileAsXml(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarProfileUrl(email, "xml", null, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "xml", null, forceSecureUrl);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace GravatarHelper.AspNet.Extensions
         /// <returns>A URL to an image containing a QR Code link back to the Gravatar profile.</returns>
         public static string GravatarProfileAsQRCode(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
-            return GravatarHelper.CreateGravatarProfileUrl(email, "qr", null, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "qr", null, forceSecureUrl);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace GravatarHelper.AspNet.Extensions
                 { "s", imageSize.ToString() }
             };
 
-            return GravatarHelper.CreateGravatarProfileUrl(email, "qr", optionalParameters, forceSecureUrl);
+            return Common.GravatarHelper.CreateGravatarProfileUrl(email, "qr", optionalParameters, forceSecureUrl);
         }
 
         private static bool IsSecureConnection()

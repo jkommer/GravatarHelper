@@ -24,7 +24,7 @@ namespace GravatarHelper.Tests
                     "myemailaddress@EXAMPLE.COM"
                 };
 
-            var hashes = emails.Select(GravatarHelper.CreateGravatarHash);
+            var hashes = emails.Select(Common.GravatarHelper.CreateGravatarHash);
 
             Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 
@@ -46,7 +46,7 @@ namespace GravatarHelper.Tests
         [InlineData("user@[IPv6:2001:db8:1ff::a0b:dbd0]", "829fc0ea15e1e4daec2ba90bd23b0d62")]
         public void HashResult(string email, string expectedHash)
         {
-            var hash = GravatarHelper.CreateGravatarHash(email);
+            var hash = Common.GravatarHelper.CreateGravatarHash(email);
             Assert.True(hash == expectedHash, string.Format("Email {0} hashed into {1} but expected {2}", email, hash, expectedHash));
         }
 
@@ -64,7 +64,7 @@ namespace GravatarHelper.Tests
                     "  MyEmailAddress@example.com  "
                 };
 
-            var hashes = emails.Select(GravatarHelper.CreateGravatarHash);
+            var hashes = emails.Select(Common.GravatarHelper.CreateGravatarHash);
 
             Assert.True(hashes.Any(), "Email addresses should succesfully hash.");
 
@@ -79,8 +79,8 @@ namespace GravatarHelper.Tests
         [Fact(DisplayName = "Null or empty email address should return empty hash.")]
         public void NoEmailReturnsEmptyHash()
         {
-            Assert.True(GravatarHelper.CreateGravatarHash(null) == string.Empty);
-            Assert.True(GravatarHelper.CreateGravatarHash(string.Empty) == string.Empty);
+            Assert.True(Common.GravatarHelper.CreateGravatarHash(null) == string.Empty);
+            Assert.True(Common.GravatarHelper.CreateGravatarHash(string.Empty) == string.Empty);
         }
     }
 }

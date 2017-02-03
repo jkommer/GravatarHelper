@@ -24,7 +24,7 @@ namespace GravatarHelper.AspNetCore
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.Attributes.SetAttribute("src", GravatarHelper.CreateGravatarUrl(GravatarEmail, GravatarSize, null, null, false, false, false));
+            output.Attributes.SetAttribute("src", Common.GravatarHelper.CreateGravatarUrl(GravatarEmail, GravatarSize, null, null, false, false, false));
         }
     }
 }

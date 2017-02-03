@@ -182,7 +182,7 @@ namespace GravatarHelper.AspNet.Extensions
             var httpRequest = httpContext.Request;
             
             var imgTag = new TagBuilder("img");
-            imgTag.MergeAttribute("src", GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl || httpRequest.IsSecureConnection));
+            imgTag.MergeAttribute("src", Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl || httpRequest.IsSecureConnection));
 
             if (htmlAttributes != null)
             {
