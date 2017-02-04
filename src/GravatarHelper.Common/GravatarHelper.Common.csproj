@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;net45;net40</TargetFrameworks>
     <Authors>jkommer</Authors>
-    <VersionPrefix>4.0.0</VersionPrefix>
-    <Description>A simple ASP.NET MVC5 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.</Description>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Description>Core library used to provide Gravatar methods for both GravatarHelper and GravatarHelper.AspNetCore</Description>
     <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
