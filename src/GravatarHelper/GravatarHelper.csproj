@@ -1,38 +1,26 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Library</OutputType>
-    <RootNamespace>GravatarHelper.AspNet</RootNamespace>
-    <AssemblyName>GravatarHelper.AspNet</AssemblyName>
-    <TargetFrameworks>net45</TargetFrameworks>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>net40;net45</TargetFrameworks>
     <Authors>jkommer</Authors>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>4.0.0</VersionPrefix>
     <Description>A simple ASP.NET MVC5 helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.</Description>
     <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright (c) 2012, Johannes Kommer.</Copyright>
-    <PackageTags>MVC5 Gravatar</PackageTags>
- </PropertyGroup>
+    <PackageTags>MVC3 MVC4 MVC5 Gravatar</PackageTags>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.0.0.0" />
-    <PackageReference Include="Microsoft.AspNet.Razor" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
-    <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />    
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="3.0.20105.1" />
+    <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-      <Content Include="**/*.xdt" />
+    <Content Include="**/*.xdt" />
   </ItemGroup>
 </Project>

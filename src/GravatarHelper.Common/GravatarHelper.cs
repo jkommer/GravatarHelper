@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+
+#if (NET40)
+using System.Web;
+#else
+using System.Net;
+#endif
 
 namespace GravatarHelper.Common
 {
@@ -101,7 +106,7 @@ namespace GravatarHelper.Common
 
             if (!string.IsNullOrWhiteSpace(defaultImage))
             {
-                defaultImage = string.Concat("&d=", WebUtility.UrlEncode(defaultImage));
+                defaultImage = string.Concat("&d=", UrlEncode(defaultImage));
             }
 
             return $"{CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty, useSecureUrl)}?s={imageSize}{defaultImage}{(rating.HasValue ? string.Concat("&r=", rating) : string.Empty)}{(forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty)}";
@@ -120,7 +125,7 @@ namespace GravatarHelper.Common
                 var queryStringParameters = optionalParameters != null ?
                         "?" + string.Join(
                             "&",
-                            optionalParameters.Select(parameter => string.Concat(parameter.Key, "=", WebUtility.UrlEncode(parameter.Value.ToString()))))
+                            optionalParameters.Select(parameter => string.Concat(parameter.Key, "=", UrlEncode(parameter.Value.ToString()))))
                         : string.Empty;
 
                 return string.Concat(CreateGravatarBaseUrl(email, GravatarProfilePath, extension, useSecureUrl), queryStringParameters);
@@ -168,6 +173,17 @@ namespace GravatarHelper.Common
         private static string CreateGravatarBaseUrl(string email, string basePath, string extension, bool useSecureUrl)
         {
             return string.Concat(useSecureUrl ? GravatarSecureUrl : GravatarUrl, basePath, CreateGravatarHash(email), !string.IsNullOrWhiteSpace(extension) ? string.Concat(".", extension) : string.Empty);
+        }
+
+
+        private static string UrlEncode(string value)
+        {
+#if (NET40)
+            return HttpUtility.UrlEncode(value);
+#else
+            return WebUtility.UrlEncode(value);
+#endif
+
         }
     }
 }

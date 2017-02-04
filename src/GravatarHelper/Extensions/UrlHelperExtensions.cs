@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Web.Mvc;
 
-namespace GravatarHelper.AspNet.Extensions
+namespace GravatarHelper.Extensions
 {
-    using System.Web.Mvc;
-
     /// <summary>
     /// Gravatar UrlHelper extension methods.
     /// </summary>
