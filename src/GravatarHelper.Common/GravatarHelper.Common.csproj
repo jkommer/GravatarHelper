@@ -1,20 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;net45;net40</TargetFrameworks>
-    <Authors>jkommer</Authors>
+    <Authors>Johannes Kommer</Authors>
     <VersionPrefix>1.1.0</VersionPrefix>
-    <Description>Core library used to provide Gravatar methods for both GravatarHelper and GravatarHelper.AspNetCore</Description>
+    <Description>The core library used to provide Gravatar methods for both GravatarHelper and GravatarHelper.AspNetCore</Description>
     <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright (c) 2012, Johannes Kommer.</Copyright>
     <PackageTags>Gravatar</PackageTags>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="**\*.resx" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web" Condition="'$(TargetFramework)' == 'net40'" />
   </ItemGroup>
