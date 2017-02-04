@@ -3,7 +3,7 @@
   <system.web.webPages.razor>
     <pages>
       <namespaces>
-        <add namespace="GravatarHelper" xdt:Transform="Remove" xdt:Locator="Match(namespace)" />
+        <add namespace="GravatarHelper.Common" xdt:Transform="Remove" xdt:Locator="Match(namespace)" />
         <add namespace="GravatarHelper.Extensions" xdt:Transform="Remove" xdt:Locator="Match(namespace)" />
       </namespaces>
     </pages>

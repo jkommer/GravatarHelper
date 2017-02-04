@@ -3,7 +3,7 @@
   <system.web.webPages.razor>
     <pages>
       <namespaces>
-        <add namespace="GravatarHelper" xdt:Transform="Insert" />
+        <add namespace="GravatarHelper.Common" xdt:Transform="Insert" />
         <add namespace="GravatarHelper.Extensions" xdt:Transform="Insert" />
       </namespaces>
     </pages>

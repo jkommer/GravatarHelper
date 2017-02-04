@@ -1,4 +1,4 @@
-﻿namespace GravatarHelper
+﻿namespace GravatarHelper.Common
 {
     /// <summary>
     /// Enum specifying the possible age-ratings to limit our gravatar images to.

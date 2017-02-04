@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;net45;net40</TargetFrameworks>
     <Authors>jkommer</Authors>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <Description>Core library used to provide Gravatar methods for both GravatarHelper and GravatarHelper.AspNetCore</Description>
     <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>

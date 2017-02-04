@@ -1,4 +1,5 @@
 ﻿using System;
+using GravatarHelper.Common;
 using GravatarHelper.Tests.Extensions;
 using Xunit;
 

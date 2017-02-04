@@ -21,6 +21,8 @@
     <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="**/*.xdt" />
+    <Content Include="Views/*.xdt">
+      <PackagePath>Content/</PackagePath>
+    </Content>
   </ItemGroup>
 </Project>
