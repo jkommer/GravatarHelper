@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using GravatarHelper.Common;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GravatarHelper.Extensions
 {
@@ -27,6 +28,7 @@ namespace GravatarHelper.Extensions
         /// <param name="imageSize">Gravatar size in pixels.</param>#
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar URL for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]     
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, bool forceSecureUrl = false)
         {
             return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, null, null, null, null, forceSecureUrl || IsSecureConnection());
@@ -42,6 +44,7 @@ namespace GravatarHelper.Extensions
         /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar URL for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]     
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage, bool forceSecureUrl = false)
         {
             return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, null, null, null, forceSecureUrl || IsSecureConnection());
@@ -58,6 +61,7 @@ namespace GravatarHelper.Extensions
         /// <param name="rating">The content rating of the images to display.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar URL for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]     
         public static string Gravatar(this UrlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool forceSecureUrl = false)
         {
             return Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, null, null, forceSecureUrl || IsSecureConnection());
@@ -70,6 +74,7 @@ namespace GravatarHelper.Extensions
         /// <param name="email">Email address to generate the Gravatar for.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>The Gravatar URL for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]
         public static string GravatarProfile(this UrlHelper helper, string email, bool forceSecureUrl = false)
         {
             return Common.GravatarHelper.CreateGravatarProfileUrl(email, null, null, forceSecureUrl);
@@ -99,7 +104,7 @@ namespace GravatarHelper.Extensions
         {
             var optionalParameters = new Dictionary<string, string>
             {
-                { "Callback", callback}
+                { "Callback", callback }
             };
 
             return Common.GravatarHelper.CreateGravatarProfileUrl(email, "json", optionalParameters, forceSecureUrl);

@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using GravatarHelper.Common;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GravatarHelper.Extensions
 {
@@ -28,6 +29,7 @@ namespace GravatarHelper.Extensions
         /// <param name="imageSize">Gravatar size in pixels.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, null, null, null, null, null, forceSecureUrl);
@@ -43,6 +45,7 @@ namespace GravatarHelper.Extensions
         /// can either be a url to an image or one of the DefaultImage* constants</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, null, null, null, null, forceSecureUrl);
@@ -57,6 +60,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, object htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, null, null, null, null, new RouteValueDictionary(htmlAttributes), forceSecureUrl);
@@ -71,6 +75,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, IDictionary<string, object> htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, null, null, null, null, htmlAttributes, forceSecureUrl);
@@ -87,6 +92,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, object htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, null, null, null, new RouteValueDictionary(htmlAttributes), forceSecureUrl);
@@ -104,6 +110,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, object htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, rating, null, null, new RouteValueDictionary(htmlAttributes), forceSecureUrl);
@@ -121,6 +128,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, IDictionary<string, object> htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, rating, null, null, htmlAttributes, forceSecureUrl);
@@ -140,6 +148,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool addExtension, bool forceDefault, object htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault, new RouteValueDictionary(htmlAttributes), forceSecureUrl);
@@ -159,6 +168,7 @@ namespace GravatarHelper.Extensions
         /// <param name="htmlAttributes">Object containing the HTML attributes to set for the img element.</param>
         /// <param name="forceSecureUrl">Forces the use of https</param>
         /// <returns>A Gravatar img tag for the provided parameters.</returns>
+        [ExcludeFromCodeCoverage]        
         public static MvcHtmlString Gravatar(this HtmlHelper helper, string email, int imageSize, string defaultImage, GravatarRating? rating, bool addExtension, bool forceDefault, IDictionary<string, object> htmlAttributes, bool forceSecureUrl = false)
         {
             return CreateGravatarImage(email, imageSize, defaultImage, rating, addExtension, forceDefault, htmlAttributes, forceSecureUrl);
