@@ -1,15 +1,24 @@
 ﻿using System;
-using GravatarHelper.Common;
-using GravatarHelper.Tests.Extensions;
+using GravatarHelper.Common.Tests.Extensions;
 using Xunit;
 
-namespace GravatarHelper.Tests
+namespace GravatarHelper.Common.Tests
 {
     /// <summary>
     /// Test which verify the functionality of CreateGravatarUrl.
     /// </summary>
-    public class GravatarUrlTests : BaseGravatarTests
+    public class GravatarUrlTests
     {
+        /// <summary>
+        /// Default email address for testing.
+        /// </summary>
+        private const string DefaultEmailAddress = "MyEmailAddress@example.com";
+
+        /// <summary>
+        /// Default image size for testing.
+        /// </summary>
+        private const int DefaultImageSize = 80;
+
         /// <summary>
         /// Verify that the rating query string parameter matches the supplied argument.
         /// </summary>
@@ -69,46 +78,14 @@ namespace GravatarHelper.Tests
         }
 
         /// <summary>
-        /// Verifies that CreateGravatarUrl automatically switches between http and https depending on IsSecureConnection.
-        /// </summary>
-        //[Fact(DisplayName = "Automatically determine whether to use http or https.")]
-        //public void AutomaticallyUseHttpAndHttps()
-        //{
-        //    HttpRequest.SecureConnectionResult = true;
-        //    var secureUri = CreateGravatarUri();
-
-        //    HttpRequest.SecureConnectionResult = false;
-        //    var normalUri = CreateGravatarUri();
-
-        //    Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by default.");
-        //    Assert.True(normalUri.Scheme == "http", "Http protocol should be used on normal connections by default.");
-        //}
-
-        /// <summary>
-        /// Verifies that CreateGravatarUrl can be forced to https based on ForceSecureUrl.
-        /// </summary>
-        //[Fact(DisplayName = "Can force https.")]
-        //public void CanForceHttps()
-        //{
-        //    HttpRequest.SecureConnectionResult = true;
-        //    var secureUri = CreateGravatarUri(forceSecureUrl: true);
-
-        //    HttpRequest.SecureConnectionResult = false;
-        //    var normalUri = CreateGravatarUri(forceSecureUrl: true);
-
-        //    Assert.True(secureUri.Scheme == "https", "Https protocol should be used on secure connections by when ForceSecureUrl = true.");
-        //    Assert.True(normalUri.Scheme == "https", "Https protocol should be used on normal connections by when ForceSecureUrl = true.");
-        //}
-
-        /// <summary>
         /// Verify that the Gravatar size cannot exceed either minimum or maximum size.
         /// </summary>
         /// <param name="imageSize">Size of the image.</param>
         /// <param name="expectedSize">The expected size.</param>
         [Theory(DisplayName = "Image size cannot exceed either minimum or maximum size.")]
-        [InlineData(Common.GravatarHelper.MinImageSize - 1, Common.GravatarHelper.MinImageSize)]
-        [InlineData((Common.GravatarHelper.MinImageSize + Common.GravatarHelper.MaxImageSize) / 2, (Common.GravatarHelper.MinImageSize + Common.GravatarHelper.MaxImageSize) / 2)]
-        [InlineData(Common.GravatarHelper.MaxImageSize + 1, Common.GravatarHelper.MaxImageSize)]
+        [InlineData(GravatarHelper.MinImageSize - 1, GravatarHelper.MinImageSize)]
+        [InlineData((GravatarHelper.MinImageSize + GravatarHelper.MaxImageSize) / 2, (GravatarHelper.MinImageSize + GravatarHelper.MaxImageSize) / 2)]
+        [InlineData(GravatarHelper.MaxImageSize + 1, GravatarHelper.MaxImageSize)]
         public void ImageSizeCannotExceedBounds(int imageSize, int expectedSize)
         {
             var uri = CreateGravatarUri(imageSize: imageSize);
@@ -125,7 +102,7 @@ namespace GravatarHelper.Tests
         /// </summary>
         /// <param name="defaultImage">The default image.</param>
         [Theory(DisplayName = "Generated URL is well-formed.")]
-        [InlineData(Common.GravatarHelper.DefaultImageIdenticon)]
+        [InlineData(GravatarHelper.DefaultImageIdenticon)]
         [InlineData("http://example.com/logo.jpg")]
         public void UrlIsWellFormed(string defaultImage)
         {
@@ -147,7 +124,7 @@ namespace GravatarHelper.Tests
         /// <returns>The Gravatar url wrapped inside an Uri.</returns>
         private static Uri CreateGravatarUri(string email = DefaultEmailAddress, int imageSize = DefaultImageSize, string defaultImage = null, GravatarRating? rating = null, bool? addExtension = null, bool? forceDefault = null, bool forceSecureUrl = false)
         {
-            var url = Common.GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl);
+            var url = GravatarHelper.CreateGravatarUrl(email, imageSize, defaultImage, rating, addExtension, forceDefault, forceSecureUrl);
             return new Uri(url);
         }
     }

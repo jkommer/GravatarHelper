@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using GravatarHelper.Tests.Extensions;
+using GravatarHelper.Common.Tests.Extensions;
 using Xunit;
 
-namespace GravatarHelper.Tests
+namespace GravatarHelper.Common.Tests
 {
     /// <summary>
     /// Test which verify the functionality of CreateGravatarProfileUrl.
     /// </summary>
-    public class GravatarProfileUrlTests : BaseGravatarTests
+    public class GravatarProfileUrlTests
     {
         /// <summary>
         /// Verifies that custom query parameters can be added to the profile url.
@@ -22,7 +22,7 @@ namespace GravatarHelper.Tests
                 { "Size", "80" }
             };
 
-            var uri = CreateGravatarProfileUri(optionalParameters: parameters);
+            var uri = CreateGravatarProfileUri("email@example.com", optionalParameters: parameters);
 
             var sizeParameter = uri.GetQueryParameter("Size");
             var callbackParameter = uri.GetQueryParameter("Callback");
@@ -39,9 +39,9 @@ namespace GravatarHelper.Tests
         /// <param name="optionalParameters">Optional parameters to add to the url.</param>
         /// <param name="useSecureUrl">Whether to request the Gravatar over https.</param>
         /// <returns>The Gravatar profile url wrapped inside an Uri.</returns>
-        private static Uri CreateGravatarProfileUri(string email = DefaultEmailAddress, string extension = null, IDictionary<string, string> optionalParameters = null, bool useSecureUrl = false)
+        private static Uri CreateGravatarProfileUri(string email, string extension = null, IDictionary<string, string> optionalParameters = null, bool useSecureUrl = false)
         {
-            var url = Common.GravatarHelper.CreateGravatarProfileUrl(email, extension, optionalParameters, useSecureUrl);
+            var url = GravatarHelper.CreateGravatarProfileUrl(email, extension, optionalParameters, useSecureUrl);
             return new Uri(url);
         }
     }

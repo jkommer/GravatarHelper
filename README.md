@@ -9,7 +9,7 @@ GravatarHelper
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------|
 | GravatarHelper             | [![GravatarHelper](https://buildstats.info/nuget/GravatarHelper)](https://www.nuget.org/packages/GravatarHelper/)                                  |
 | GravatarHelper.Common      | [![GravatarHelper.Common](https://buildstats.info/nuget/GravatarHelper.Common)](https://www.nuget.org/packages/GravatarHelper.Common/)             |
-| GravatarHelper.AspNetCore: | [![GravatarHelper.AspNetCore](https://buildstats.info/nuget/GravatarHelper.AspNetCore)](https://www.nuget.org/packages/GravatarHelper.AspNetCore/) |
+| GravatarHelper.AspNetCore  | [![GravatarHelper.AspNetCore](https://buildstats.info/nuget/GravatarHelper.AspNetCore)](https://www.nuget.org/packages/GravatarHelper.AspNetCore/) |
 
 A set of libraries providing Gravatar support to .NET and .NET Core .
 

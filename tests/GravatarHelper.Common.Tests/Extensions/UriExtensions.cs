@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace GravatarHelper.Tests.Extensions
+namespace GravatarHelper.Common.Tests.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="Uri"/>.
