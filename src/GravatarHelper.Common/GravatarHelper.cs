@@ -109,7 +109,7 @@ namespace GravatarHelper.Common
                 defaultImage = string.Concat("&d=", UrlEncode(defaultImage));
             }
 
-            return $"{CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? ".jpg" : string.Empty, useSecureUrl)}?s={imageSize}{defaultImage}{(rating.HasValue ? string.Concat("&r=", rating) : string.Empty)}{(forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty)}";
+            return $"{CreateGravatarBaseUrl(email, GravatarImagePath, addExtension.GetValueOrDefault(false) ? "jpg" : string.Empty, useSecureUrl)}?s={imageSize}{defaultImage}{(rating.HasValue ? string.Concat("&r=", rating) : string.Empty)}{(forceDefault.GetValueOrDefault(false) ? "&f=y" : string.Empty)}";
         }
 
         /// <summary>

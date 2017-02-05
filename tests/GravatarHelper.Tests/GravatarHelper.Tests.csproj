@@ -15,4 +15,9 @@
     <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />
     <ProjectReference Include="..\..\src\GravatarHelper\GravatarHelper.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
