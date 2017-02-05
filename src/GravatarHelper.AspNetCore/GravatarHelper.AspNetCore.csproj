@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <Authors>Johannes Kommer</Authors>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Summary>A simple ASP.NET Core TagHelper for Gravatar.</Summary>
+    <Description>A simple ASP.NET Core TagHelper for Gravatar.
+
+To use please add the following to your '_ViewImports.cshtml' file:
+
+@using GravatarHelper.Common
+@addTagHelper *, GravatarHelper.AspNetCore
+
+You can then use it in any .cshtml file as follows: 
+
+<img gravatar-email="MyEmailAddress@example.com" gravatar-size="80" alt="My Gravatar" /></Description>
+    <PackageLicenseUrl>http://creativecommons.org/publicdomain/zero/1.0/</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/jkommer/GravatarHelper/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jkommer/GravatarHelper/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>aspnetcore aspnetcoremvc Gravatar</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GravatarHelper.Common\GravatarHelper.Common.csproj" />
+  </ItemGroup>
+</Project>
