@@ -17,19 +17,26 @@ A set of libraries providing Gravatar support to .NET and .NET Core .
 
 To install GravatarHelper, run the following command in the Package Manager Console
 
-ASP.NET MVC 3 / 4 / 5:
+**ASP.NET MVC 3 / 4 / 5:**
 
 ```console
 Install-Package GravatarHelper
 ```
 
-ASP.NET Core MVC:
+**ASP.NET Core MVC:**
 
 ```console
 Install-Package GravatarHelper.AspNetCore
 ```
 
-Non-MVC:
+and add the following to your `_ViewImports.cshtml` file:
+
+```csharp
+@using GravatarHelper.Common
+@addTagHelper *, GravatarHelper.AspNetCore
+```
+
+**Non-MVC:**
 
 ```console
 Install-Package GravatarHelper.Common
