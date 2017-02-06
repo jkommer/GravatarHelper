@@ -1,0 +1,8 @@
+title: Gravatarhelper
+description: A simple ASP.NET MVC helper for Gravatar providing extension methods to HtmlHelper and UrlHelper.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
