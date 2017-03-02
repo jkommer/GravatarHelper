@@ -15,7 +15,7 @@ install:
   - cmd: if not exist "c:\downloads" mkdir "c:\downloads"
 
 # We need to update the dotnet environment as we use the new csproj format.
-  - cmd: if not exist "c:\downloads\dotnet.exe" appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=839640 -FileName "c:\downloads\dotnet.exe" # dotnet-dev-win-x64.1.0.0-rc3-004530.exe 
+  - cmd: if not exist "c:\downloads\dotnet.exe" appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=841686 -FileName "c:\downloads\dotnet.exe" # dotnet-dev-win-x64.1.0.0-rc4-004771.exe
   - cmd: call c:\downloads\dotnet.exe /quiet
 
 # The current versions of OpenCover do not support the new PDB format - download a pre-release version which does.
@@ -27,9 +27,7 @@ before_build:
 
 build_script:
   - ps: dotnet --info
-  # We currently have to use msbuild /m:1 rather than dotnet build - see https://github.com/dotnet/cli/issues/4786
-  #- ps: dotnet build -c $ENV:CONFIGURATION
-  - ps: dotnet msbuild /m:1 /p:Configuration=$ENV:CONFIGURATION
+  - ps: dotnet build -c $ENV:CONFIGURATION
 
 test_script: 
   - ps: .\build\scripts\run-tests.ps1
