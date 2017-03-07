@@ -8,8 +8,8 @@
     <Reference Include="System.Web" />
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="OpenCover" Version="4.6.519" />
-    <PackageReference Include="xunit" Version="2.2.0-beta5-*" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta5-*" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\GravatarHelper.Common\GravatarHelper.Common.csproj" />
