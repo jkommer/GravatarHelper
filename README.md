@@ -70,6 +70,30 @@ Create a Gravatar Profile link for "MyEmailAddress@example.com".
 <img gravatar-email="MyEmailAddress@example.com" gravatar-size="80" alt="My Gravatar" />
 ```
 
+### Troubleshooting
+
+### GravatarHelper
+
+The NuGet package should by default add two using statements to the /views/web.config file allowing Gravatar extension methods to be used throughout all view files. If this fails then you can manually add the following two namespaces to the /views/web.config file:
+
+```xml
+<system.web.webPages.razor>
+  <pages>
+    <namespaces>
+      <add namespace="GravatarHelper.Common" />
+      <add namespace="GravatarHelper.Extensions" />
+    </namespaces>
+  </pages>
+</system.web.webPages.razor>
+```
+
+Or alternatively add the namespace directly to the relevant view files:
+
+```csharp
+@using GravatarHelper.Common
+@using GravatarHelper.Extensions
+```
+
 ## License
 
 GravatarHelper is licensed under the [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication][1]
