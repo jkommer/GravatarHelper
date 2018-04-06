@@ -1,4 +1,4 @@
-image: Visual Studio 2015
+image: Visual Studio 2017
 
 platform: Any CPU
 configuration: Release
@@ -14,16 +14,9 @@ install:
 # Ensure downloads folder exists.
   - cmd: if not exist "c:\downloads" mkdir "c:\downloads"
 
-# We need to update the dotnet environment as we use the new csproj format.
-  - cmd: if not exist "c:\downloads\dotnet.exe" appveyor DownloadFile https://go.microsoft.com/fwlink/?linkid=843448 -FileName "c:\downloads\dotnet.exe" # dotnet-1.1.1-sdk-win-x64.exe
-  - cmd: call c:\downloads\dotnet.exe /quiet
-
 # The current versions of OpenCover do not support the new PDB format - download a pre-release version which does.
   - cmd: if not exist "c:\downloads\OpenCover.zip" appveyor DownloadFile https://ci.appveyor.com/api/buildjobs/xj78v6dac42uob8q/artifacts/main/bin/zip/opencover.4.6.589.zip -FileName "c:\downloads\OpenCover.zip" # OpenCover 4.6.589.zip
   - cmd: 7z x c:\downloads\OpenCover.zip -oc:\OpenCover\
-
-before_build:
-  - appveyor-retry dotnet restore -v Minimal
 
 build_script:
   - ps: dotnet --info
@@ -42,6 +35,5 @@ artifacts:
   - path: 'artifacts\packages\*.nupkg'
 
 cache:
-  - c:\downloads\dotnet.exe -> appveyor.yml
   - c:\downloads\OpenCover.zip -> appveyor.yml
   - '%USERPROFILE%\.nuget\packages -> *.csproj, appveyor.yml'
