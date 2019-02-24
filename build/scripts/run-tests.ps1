@@ -19,5 +19,6 @@ ForEach ($project in (Get-ChildItem -Path $testDirectory -File -Recurse -Filter 
                  -filter:$filter `
                  -register:user `
                  -mergeoutput `
+                 -oldstyle `
                  -returntargetcode
 }
