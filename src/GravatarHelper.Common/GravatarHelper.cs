@@ -74,7 +74,7 @@ namespace GravatarHelper.Common
         /// <summary>
         /// Gravatar HTTPS url.
         /// </summary>
-        private const string GravatarSecureUrl = "https://secure.gravatar.com";
+        private const string GravatarSecureUrl = "https://www.gravatar.com";
 
         /// <summary>
         /// Gravatar image path.
